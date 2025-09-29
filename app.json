@@ -2,49 +2,23 @@
   "name": "TEC Learning Platform",
   "description": "A comprehensive learning and training platform built with React and FastAPI",
   "repository": "https://github.com/tecsrilankaworldwide/tec-platform-production",
-  "logo": "https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4",
-  "keywords": [
-    "learning-platform",
-    "education",
-    "react",
-    "fastapi",
-    "mongodb",
-    "python",
-    "javascript"
-  ],
-  "stack": "heroku-22",
+  "keywords": ["learning-platform", "education", "react", "fastapi", "mongodb"],
   "env": {
-    "NODE_ENV": {
-      "description": "Node.js environment",
-      "value": "production"
-    },
     "MONGO_URL": {
-      "description": "MongoDB connection string (use MongoDB Atlas)",
-      "value": "mongodb+srv://username:password@cluster.mongodb.net/tec_platform?retryWrites=true&w=majority"
+      "description": "MongoDB Atlas connection string",
+      "required": true
     },
     "DB_NAME": {
       "description": "Database name",
       "value": "tec_platform"
     },
-    "CORS_ORIGINS": {
-      "description": "CORS origins for API",
-      "value": "*"
-    },
     "SECRET_KEY": {
-      "description": "JWT secret key for authentication",
+      "description": "JWT secret key",
       "generator": "secret"
+    },
+    "CORS_ORIGINS": {
+      "description": "CORS origins",
+      "value": "*"
     }
-  },
-  "formation": {
-    "web": {
-      "quantity": 1,
-      "size": "basic"
-    }
-  },
-  "addons": [
-    "mongolab:sandbox"
-  ],
-  "scripts": {
-    "postdeploy": "echo 'TEC Learning Platform deployed successfully!'"
   }
 }
