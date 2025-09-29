@@ -252,7 +252,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Platform demo readiness"
+    - "Admin user creation"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
