@@ -7,9 +7,7 @@
     "npm": "9.6.7"
   },
   "scripts": {
-    "build": "cd frontend && yarn install && yarn build",
-    "start": "cd backend && python -m uvicorn server:app --host 0.0.0.0 --port $PORT",
-    "heroku-postbuild": "cd frontend && yarn install && yarn build && cd ../backend && pip install -r requirements.txt",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
     "dev": "concurrently \"cd backend && uvicorn server:app --reload --host 0.0.0.0 --port 8001\" \"cd frontend && yarn start\"",
     "install-deps": "cd frontend && yarn install && cd ../backend && pip install -r requirements.txt"
   },
