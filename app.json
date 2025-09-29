@@ -10,18 +10,21 @@
       "value": "tec-secret-key-2024"
     },
     "STRIPE_API_KEY": {
-      "description": "Stripe API key", 
+      "description": "Stripe API key",
       "value": "sk_test_emergent"
     }
   },
   "addons": [
     {
-      "plan": "mongolab:sandbox",
-      "as": "MONGODB"
+      "plan": "mongolab:sandbox"
     }
   ],
   "buildpacks": [
-    "heroku/nodejs",
-    "heroku/python"
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/python"
+    }
   ]
 }
