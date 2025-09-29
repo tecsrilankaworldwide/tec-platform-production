@@ -218,3 +218,5 @@ test_plan:
 agent_communication:
     - agent: "testing"
       message: "Comprehensive testing completed for TEC Learning Platform demo. Platform is ready for demonstration with minor frontend message handling issues that don't affect core functionality. Backend is fully operational. All critical user journey components are working correctly."
+    - agent: "testing"
+      message: "CRITICAL FINDING: Admin credentials (admin@demo.com/password123) are invalid - user doesn't exist in database. Student credentials (student@hongkong.com/hongkong123) work perfectly. Login navigation, dashboard functionality, course catalog, logout, and mobile responsiveness all working correctly. Platform is demo-ready but admin user needs to be created."
