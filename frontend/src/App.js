@@ -6,7 +6,8 @@ import './App.css';
 // Context for authentication
 const AuthContext = createContext();
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+// Use relative URLs in production, full URL in development  
+const BACKEND_URL = process.env.NODE_ENV === 'production' ? '' : (process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001');
 const API = `${BACKEND_URL}/api`;
 
 // Axios interceptor for auth
