@@ -146,6 +146,8 @@ const LoginForm = ({ onToggle }) => {
 
     try {
       await login(formData.email, formData.password);
+      // Explicitly navigate to dashboard after successful login
+      navigate('/');
     } catch (error) {
       setError(error.response?.data?.detail || 'Login failed');
     } finally {
