@@ -13,10 +13,7 @@
     "dev": "concurrently \"cd backend && uvicorn server:app --reload --host 0.0.0.0 --port 8001\" \"cd frontend && yarn start\"",
     "install-deps": "cd frontend && yarn install && cd ../backend && pip install -r requirements.txt"
   },
-  "dependencies": {
-    "concurrently": "^8.2.2",
-    "express": "^4.18.2"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/tecsrilankaworldwide/tec-platform-production.git"
