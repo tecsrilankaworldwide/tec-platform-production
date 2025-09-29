@@ -1,83 +1,29 @@
 {
-
-"name": "TEC Future-Ready Learning Platform",
-
-"description": "Complete educational ecosystem for ages 4-18",
-
-"repository": "https://github.com/tecsrilankaworldwide/tec-platform-production",
-
-"keywords": ["education", "ai", "learning"],
-
-"success_url": "/",
-
-"env": {
-
-"SECRET_KEY": {
-
-"description": "JWT secret key",
-
-"value": "tec-secret-key-2024"
-
-},
-
-"STRIPE_API_KEY": {
-
-"description": "Stripe API key",
-
-"value": "sk_test_emergent"
-
-}
-
-},
-
-"MONGO_URL": {
-
-"description": "MongoDB connection string",
-
-"value": "mongodb://localhost:27017/tec_platform"
-
-"env": {
-
-"SECRET_KEY": {
-
-"description": "JWT secret key",
-
-"value": "tec-secret-key-2024"
-
-},
-
-"STRIPE_API_KEY": {
-
-"description": "Stripe API key",
-
-"value": "sk_test_emergent"
-
-},
-
-"MONGO_URL": {
-
-"description": "MongoDB connection string",
-
-"value": "mongodb://localhost:27017/tec_platform"
-
-}
-
-},
-
-"buildpacks": [
-
-{
-
-"url": "heroku/nodejs"
-
-},
-
-{
-
-"url": "heroku/python"
-
-}
-
-]
-
+  "name": "TEC Future-Ready Learning Platform",
+  "description": "Complete educational ecosystem for ages 4-18",
+  "repository": "https://github.com/tecsrilankaworldwide/tec-platform-production",
+  "keywords": ["education", "ai", "learning"],
+  "success_url": "/",
+  "env": {
+    "SECRET_KEY": {
+      "description": "JWT secret key",
+      "value": "tec-secret-key-2024"
+    },
+    "STRIPE_API_KEY": {
+      "description": "Stripe API key",
+      "value": "sk_test_emergent"
+    },
+    "MONGO_URL": {
+      "description": "MongoDB connection string",
+      "value": "mongodb://localhost:27017/tec_platform"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ]
 }
