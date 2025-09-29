@@ -10,7 +10,7 @@
 
 "success_url": "/",
 
-no it is like this "env": {
+"env": {
 
 "SECRET_KEY": {
 
