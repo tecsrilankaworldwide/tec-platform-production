@@ -1,34 +1,17 @@
-
+{
   "name": "TEC Future-Ready Learning Platform",
-  "description": "Complete educational ecosystem for ages 4-18 with AI literacy, logical thinking, and future career skills by TEC Sri Lanka Worldwide (Pvt.) Ltd",
+  "description": "Complete educational ecosystem for ages 4-18",
   "repository": "https://github.com/tecsrilankaworldwide/tec-platform-production",
-  "logo": "https://tecaikids.com/logo.png",
-  "keywords": ["education", "ai", "learning", "sri-lanka", "children"],
+  "keywords": ["education", "ai", "learning"],
   "success_url": "/",
   "env": {
-    "MONGO_URL": {
-      "description": "MongoDB connection string (will be set automatically)",
-      "required": false
-    },
     "SECRET_KEY": {
-      "description": "JWT secret key for authentication",
-      "value": "tec-future-ready-learning-platform-secret-key-2024"
+      "description": "JWT secret key",
+      "value": "tec-secret-key-2024"
     },
     "STRIPE_API_KEY": {
-      "description": "Stripe API key for payments",
+      "description": "Stripe API key", 
       "value": "sk_test_emergent"
-    },
-    "CORS_ORIGINS": {
-      "description": "Allowed CORS origins",
-      "value": "https://www.tecaikids.com,https://tecaikids.com"
-    },
-    "NODE_ENV": {
-      "description": "Node environment",
-      "value": "production"
-    },
-    "REACT_APP_BACKEND_URL": {
-      "description": "Backend API URL",
-      "value": "https://www.tecaikids.com"
     }
   },
   "addons": [
@@ -38,12 +21,7 @@
     }
   ],
   "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    },
-    {
-      "url": "heroku/python"
-    }
-  ],
-  "stack": "heroku-22"
+    "heroku/nodejs",
+    "heroku/python"
+  ]
 }
