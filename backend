@@ -1,0 +1,3 @@
+@app.get("/")
+async def root():
+    return {"message": "TecaiKids API is running! Visit /api/ for API endpoints"}
