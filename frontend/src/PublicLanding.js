@@ -558,10 +558,10 @@ const PublicLanding = () => {
                 className="inline-flex items-center bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-700 transition-all transform hover:scale-105"
               >
                 <span className="text-2xl mr-2">📱</span>
-                WhatsApp Payment Receipt: +94 77 977 9668
+                {t.quickPay.whatsappBtn}
               </a>
               <p className="text-sm text-gray-600 mt-3">
-                💬 Available 9 AM - 6 PM (Mon-Sat)
+                {t.quickPay.availability}
               </p>
             </div>
           </div>
