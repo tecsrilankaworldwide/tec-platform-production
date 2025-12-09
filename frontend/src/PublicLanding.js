@@ -189,9 +189,9 @@ const PublicLanding = () => {
             <div className="flex justify-between items-start mb-6">
               <div>
                 <h3 className="text-2xl font-bold text-gray-800">
-                  {selectedProgram.emoji} Enroll in {selectedProgram.name}
+                  {selectedProgram.emoji} {t.programs.enrollBtn.replace(' →', '')} {t.programsList[selectedProgram.id].name}
                 </h3>
-                <p className="text-gray-600">{selectedProgram.ageRange}</p>
+                <p className="text-gray-600">{t.programsList[selectedProgram.id].ageRange}</p>
               </div>
               <button 
                 onClick={() => setShowEnrollment(false)}
