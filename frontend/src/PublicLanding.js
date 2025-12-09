@@ -635,50 +635,26 @@ const PublicLanding = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <div className="inline-block bg-blue-100 text-blue-700 px-6 py-2 rounded-full font-semibold mb-4">
-              World-Class Excellence
+              {t.features.badge}
             </div>
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Why <span className="text-purple-600">TecaiKids</span> Leads Sri Lanka
+              {t.features.title}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              {
-                icon: '🧠',
-                title: 'AI-Powered Personalization',
-                description: 'Advanced machine learning algorithms customize every lesson to your child\'s learning style.'
-              },
-              {
-                icon: '🎓',
-                title: 'Expert Curriculum Design',
-                description: 'Content developed by NIE-trained educators and international experts.'
-              },
-              {
-                icon: '🌍',
-                title: 'Global Career Readiness',
-                description: 'Preparing students for international opportunities while strengthening Sri Lankan identity.'
-              },
-              {
-                icon: '💎',
-                title: 'Premium Learning Experience',
-                description: 'High-quality interactive content and immersive experiences that inspire excellence.'
-              },
-              {
-                icon: '📊',
-                title: 'Advanced Analytics',
-                description: 'Comprehensive progress tracking and detailed analytics for optimal learning outcomes.'
-              },
-              {
-                icon: '🤝',
-                title: 'Expert Mentorship',
-                description: 'Connect with industry professionals through our exclusive learning community.'
-              }
+              { icon: '🧠' },
+              { icon: '🎓' },
+              { icon: '🌍' },
+              { icon: '💎' },
+              { icon: '📊' },
+              { icon: '🤝' }
             ].map((feature, idx) => (
               <div key={idx} className="text-center p-6">
                 <div className="text-5xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-bold text-gray-800 mb-3">{t.features.list[idx].title}</h3>
+                <p className="text-gray-600">{t.features.list[idx].description}</p>
               </div>
             ))}
           </div>
