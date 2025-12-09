@@ -129,6 +129,9 @@ const PublicLanding = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+      {/* Language Switcher */}
+      <LanguageSwitcher />
+      
       {/* Hero Section */}
       <header className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white">
         <div className="container mx-auto px-4 py-16">
