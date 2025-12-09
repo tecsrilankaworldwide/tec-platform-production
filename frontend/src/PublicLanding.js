@@ -522,7 +522,7 @@ const PublicLanding = () => {
                 </div>
               </div>
               <div className="text-center mt-4 text-sm text-gray-600">
-                💚 Quarterly plans: Save 25%
+                💚 {t.quickPay.quarterly}
               </div>
             </div>
 
