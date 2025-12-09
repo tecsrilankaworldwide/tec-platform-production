@@ -168,10 +168,10 @@ const PublicLanding = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
             {[
-              { number: '10,000+', label: 'Students Enrolled' },
-              { number: '99%', label: 'Success Rate' },
-              { number: '25+', label: 'Expert Educators' },
-              { number: '24/7', label: 'Learning Support' }
+              { number: '10,000+', label: t.stats.students },
+              { number: '99%', label: t.stats.success },
+              { number: '25+', label: t.stats.educators },
+              { number: '24/7', label: t.stats.support }
             ].map((stat, idx) => (
               <div key={idx} className="text-center bg-white/10 backdrop-blur-sm rounded-lg py-4">
                 <div className="text-3xl font-bold text-yellow-300">{stat.number}</div>
