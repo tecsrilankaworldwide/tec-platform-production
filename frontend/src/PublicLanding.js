@@ -472,17 +472,21 @@ const PublicLanding = () => {
               {/* QR Code Section */}
               <div className="bg-purple-50 p-6 rounded-xl text-center">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  📱 Scan & Pay (LankaQR)
+                  {t.quickPay.qrTitle}
                 </h3>
                 <div className="bg-white p-6 rounded-lg mb-4 min-h-[200px] flex items-center justify-center">
                   <div className="text-gray-400 text-center">
                     <div className="text-6xl mb-2">🏦</div>
-                    <div className="text-sm">QR Code Coming Soon!</div>
-                    <div className="text-xs mt-1">Available Tomorrow</div>
+                    <div className="text-sm">{t.quickPay.qrPlaceholder}</div>
+                    <div className="text-xs mt-1">{t.quickPay.qrAvailable}</div>
+                    <div className="text-xs mt-2 text-gray-500">
+                      {/* When you get the QR code image, replace the above with: */}
+                      {/* <img src="/path-to-qr-code.png" alt="LankaQR Payment Code" className="w-48 h-48 mx-auto" /> */}
+                    </div>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600">
-                  Scan with any Sri Lankan banking app for instant payment
+                  {t.quickPay.qrDescription}
                 </p>
               </div>
             </div>
