@@ -447,24 +447,24 @@ const PublicLanding = () => {
               {/* Bank Details */}
               <div className="bg-blue-50 p-6 rounded-xl">
                 <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                  🏦 Bank Transfer Details
+                  {t.quickPay.bankTitle}
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="font-semibold text-gray-700">Bank:</span>
-                    <span className="text-gray-900">Bank of Ceylon</span>
+                    <span className="font-semibold text-gray-700">{t.quickPay.bank}</span>
+                    <span className="text-gray-900">{t.quickPay.bankName}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="font-semibold text-gray-700">Account Name:</span>
-                    <span className="text-gray-900 text-right">TEC Sri Lanka Worldwide</span>
+                    <span className="font-semibold text-gray-700">{t.quickPay.accountName}</span>
+                    <span className="text-gray-900 text-right">{t.quickPay.accountHolder}</span>
                   </div>
                   <div className="flex justify-between items-center bg-white p-3 rounded-lg">
-                    <span className="font-semibold text-gray-700">Account Number:</span>
+                    <span className="font-semibold text-gray-700">{t.quickPay.accountNumber}</span>
                     <span className="text-2xl font-bold text-blue-700">0075715067</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="font-semibold text-gray-700">Branch:</span>
-                    <span className="text-gray-900">Nugegoda</span>
+                    <span className="font-semibold text-gray-700">{t.quickPay.branch}</span>
+                    <span className="text-gray-900">{t.quickPay.branchName}</span>
                   </div>
                 </div>
               </div>
