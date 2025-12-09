@@ -138,31 +138,29 @@ const PublicLanding = () => {
           <div className="text-center">
             <div className="inline-flex items-center bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6">
               <span className="text-2xl mr-2">🏆</span>
-              <span className="font-semibold">Sri Lanka's Premier Educational Platform</span>
+              <span className="font-semibold">{t.badge}</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Empowering <span className="text-yellow-300">Future Leaders</span>
+              {t.hero.title.split(' ').slice(0, 2).join(' ')} <span className="text-yellow-300">{t.hero.title.split(' ').slice(2).join(' ')}</span>
               <br />
-              Professional Education Ages 4-18
+              {t.hero.subtitle}
             </h1>
             <p className="text-xl text-blue-100 max-w-4xl mx-auto mb-8">
-              World-class education platform featuring logical thinking, algorithmic reasoning, 
-              coding, AI, and career preparation. Designed specifically for Sri Lankan excellence 
-              with expert curriculum and cutting-edge technology.
+              {t.hero.description}
             </p>
-            <div className="flex justify-center space-x-4">
+            <div className="flex justify-center space-x-4 flex-wrap gap-4">
               <button 
                 onClick={() => document.getElementById('programs').scrollIntoView({ behavior: 'smooth' })}
                 className="bg-yellow-400 text-purple-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105"
                 data-testid="start-excellence-btn"
               >
-                Start Excellence Journey 🚀
+                {t.hero.ctaPrimary}
               </button>
               <button 
                 onClick={() => document.getElementById('programs').scrollIntoView({ behavior: 'smooth' })}
                 className="bg-white text-purple-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all"
               >
-                Explore Programs
+                {t.hero.ctaSecondary}
               </button>
             </div>
           </div>
