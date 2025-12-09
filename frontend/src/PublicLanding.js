@@ -43,21 +43,9 @@ const PublicLanding = () => {
     {
       id: 'smart',
       emoji: '⚡',
-      name: 'Smart Kids Mastery',
-      ageRange: 'Ages 10-12',
-      subtitle: 'Mastery Excellence',
       monthly: 1500,
       quarterly: 5250,
       savings: 1250,
-      features: [
-        'Higher Mathematics & Calculus Prep',
-        'Professional Coding Fundamentals',
-        'Real-World STEM Projects',
-        'Advanced Logical Reasoning',
-        'Algorithmic Thinking Mastery',
-        'Critical Problem-Solving',
-        'Mentor-Guided Learning'
-      ]
     },
     {
       id: 'teens',
