@@ -50,21 +50,9 @@ const PublicLanding = () => {
     {
       id: 'teens',
       emoji: '💻',
-      name: 'Tech Teens Professional',
-      ageRange: 'Ages 13-15',
-      subtitle: 'Professional Excellence',
       monthly: 2000,
       quarterly: 7000,
       savings: 1500,
-      features: [
-        'Professional Programming Languages',
-        'Full-Stack Web Development',
-        'Mobile App Development',
-        'Advanced Algorithmic Design',
-        'Industry-Level Projects',
-        'Tech Career Preparation',
-        '1-on-1 Industry Mentorship'
-      ]
     },
     {
       id: 'leaders',
