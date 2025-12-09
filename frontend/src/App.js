@@ -1562,6 +1562,7 @@ function App() {
         </BrowserRouter>
       </div>
     </AuthProvider>
+    </LanguageProvider>
   );
 }
 
