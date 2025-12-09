@@ -572,14 +572,13 @@ const PublicLanding = () => {
       <section id="programs" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <div className="inline-block bg-purple-100 text-purple-700 px-6 py-2 rounded-full font-semibold mb-4">
-            Professional Learning Tracks
+            {t.programs.badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Excellence Programs <span className="text-purple-600">Ages 4-18</span>
+            {t.programs.title} <span className="text-purple-600">{t.programs.ageRange}</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Scientifically-designed curriculum that evolves with your child, ensuring mastery at every stage 
-            and preparing them for global opportunities.
+            {t.programs.description}
           </p>
         </div>
 
