@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useLanguage } from './LanguageContext';
+import { translations } from './translations';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
