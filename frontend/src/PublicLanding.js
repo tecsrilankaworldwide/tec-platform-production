@@ -29,21 +29,9 @@ const PublicLanding = () => {
     {
       id: 'foundation',
       emoji: '🌟',
-      name: 'Little Learners Foundation',
-      ageRange: 'Ages 4-6',
-      subtitle: 'Foundation Excellence',
       monthly: 800,
       quarterly: 2800,
       savings: 600,
-      features: [
-        'Advanced Number & Letter Mastery',
-        'Interactive Color & Shape Theory',
-        'Foundation Logical Thinking',
-        'Gamified Learning Adventures',
-        'Expert Parent Coaching',
-        'Premium Physical Workbooks',
-        'Progress Analytics Dashboard'
-      ]
     },
     {
       id: 'explorers',
