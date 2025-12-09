@@ -8,6 +8,9 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const PublicLanding = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [billingCycle, setBillingCycle] = useState('monthly');
   const [showEnrollment, setShowEnrollment] = useState(false);
