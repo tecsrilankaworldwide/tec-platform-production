@@ -591,25 +591,25 @@ const PublicLanding = () => {
             >
               <div className="bg-gradient-to-br from-purple-500 to-blue-600 p-6 text-white">
                 <div className="text-5xl mb-3">{program.emoji}</div>
-                <h3 className="text-2xl font-bold mb-2">{program.name}</h3>
-                <div className="text-blue-100">{program.ageRange} | {program.subtitle}</div>
+                <h3 className="text-2xl font-bold mb-2">{t.programsList[program.id].name}</h3>
+                <div className="text-blue-100">{t.programsList[program.id].ageRange} | {t.programsList[program.id].subtitle}</div>
               </div>
 
               <div className="p-6">
                 <div className="mb-6">
                   <div className="text-3xl font-bold text-purple-700 mb-1">
-                    LKR {program.monthly.toLocaleString()}/month
+                    LKR {program.monthly.toLocaleString()}{t.programs.monthly}
                   </div>
                   <div className="text-lg text-green-600 font-semibold">
-                    LKR {program.quarterly.toLocaleString()}/quarterly
+                    LKR {program.quarterly.toLocaleString()}{t.programs.quarterly}
                   </div>
                   <div className="text-sm text-gray-600">
-                    Save LKR {program.savings.toLocaleString()} ({Math.round((program.savings / (program.monthly * 3)) * 100)}% savings)
+                    {t.programs.save} LKR {program.savings.toLocaleString()} ({Math.round((program.savings / (program.monthly * 3)) * 100)}% {t.programs.savings})
                   </div>
                 </div>
 
                 <ul className="space-y-3 mb-6">
-                  {program.features.map((feature, idx) => (
+                  {t.programsList[program.id].features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
                       <span className="text-green-500 mr-2 text-xl">✓</span>
                       <span className="text-gray-700">{feature}</span>
@@ -622,7 +622,7 @@ const PublicLanding = () => {
                   className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-lg font-bold hover:from-purple-700 hover:to-blue-700 transition-all"
                   data-testid={`enroll-btn-${program.id}`}
                 >
-                  Enroll Now →
+                  {t.programs.enrollBtn}
                 </button>
               </div>
             </div>
