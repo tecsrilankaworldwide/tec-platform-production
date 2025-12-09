@@ -1513,10 +1513,11 @@ const Footer = () => {
 // Main App Component
 function App() {
   return (
-    <AuthProvider>
-      <div className="App min-h-screen bg-gray-50">
-        <BrowserRouter>
-          <Routes>
+    <LanguageProvider>
+      <AuthProvider>
+        <div className="App min-h-screen bg-gray-50">
+          <BrowserRouter>
+            <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={
               <ProtectedRoute>
