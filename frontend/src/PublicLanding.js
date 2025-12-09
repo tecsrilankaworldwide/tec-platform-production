@@ -433,13 +433,13 @@ const PublicLanding = () => {
           <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-4xl mx-auto">
             <div className="text-center mb-6">
               <div className="inline-block bg-green-100 text-green-700 px-6 py-2 rounded-full font-semibold mb-4">
-                ⚡ Quick Payment Option
+                {t.quickPay.title}
               </div>
               <h2 className="text-3xl font-bold text-gray-800 mb-2">
-                Pay Now, Register Later
+                {t.quickPay.subtitle}
               </h2>
               <p className="text-gray-600 text-lg">
-                Perfect for outstation customers! Pay first, complete registration via WhatsApp
+                {t.quickPay.description}
               </p>
             </div>
 
