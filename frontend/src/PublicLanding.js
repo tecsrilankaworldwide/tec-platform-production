@@ -528,23 +528,23 @@ const PublicLanding = () => {
 
             {/* Instructions */}
             <div className="mt-8 bg-yellow-50 border-2 border-yellow-300 p-6 rounded-xl">
-              <h3 className="text-lg font-bold text-gray-800 mb-3">📋 How It Works:</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-3">{t.quickPay.howItWorks}</h3>
               <ol className="space-y-2 text-gray-700">
                 <li className="flex items-start">
                   <span className="bg-yellow-400 text-yellow-900 rounded-full w-6 h-6 flex items-center justify-center font-bold mr-3 flex-shrink-0">1</span>
-                  <span><strong>Make Payment:</strong> Transfer to account 0075715067 or use QR code</span>
+                  <span><strong>{t.quickPay.step1}</strong> {t.quickPay.step1Desc}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-yellow-400 text-yellow-900 rounded-full w-6 h-6 flex items-center justify-center font-bold mr-3 flex-shrink-0">2</span>
-                  <span><strong>Take Photo:</strong> Screenshot/photo of bank receipt or online transfer confirmation</span>
+                  <span><strong>{t.quickPay.step2}</strong> {t.quickPay.step2Desc}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-yellow-400 text-yellow-900 rounded-full w-6 h-6 flex items-center justify-center font-bold mr-3 flex-shrink-0">3</span>
-                  <span><strong>WhatsApp Us:</strong> Send receipt + student details (name, age, parent contact)</span>
+                  <span><strong>{t.quickPay.step3}</strong> {t.quickPay.step3Desc}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-yellow-400 text-yellow-900 rounded-full w-6 h-6 flex items-center justify-center font-bold mr-3 flex-shrink-0">4</span>
-                  <span><strong>Get Registered:</strong> We'll complete registration and send login details!</span>
+                  <span><strong>{t.quickPay.step4}</strong> {t.quickPay.step4Desc}</span>
                 </li>
               </ol>
             </div>
