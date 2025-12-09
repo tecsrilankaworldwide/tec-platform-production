@@ -36,21 +36,9 @@ const PublicLanding = () => {
     {
       id: 'explorers',
       emoji: '🚀',
-      name: 'Young Explorers Discovery',
-      ageRange: 'Ages 7-9',
-      subtitle: 'Discovery Excellence',
       monthly: 1200,
       quarterly: 4200,
       savings: 900,
-      features: [
-        'Advanced Mathematics & Statistics',
-        'Virtual Science Laboratory',
-        'Critical Reading & Analysis',
-        'Intermediate Logical Thinking',
-        'Digital Art & Design',
-        'AI-Powered Progress Tracking',
-        'Peer Learning Networks'
-      ]
     },
     {
       id: 'smart',
