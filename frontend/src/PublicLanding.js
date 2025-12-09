@@ -664,11 +664,11 @@ const PublicLanding = () => {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4 text-center">
-          <div className="text-2xl font-bold mb-2">🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd</div>
-          <div className="text-gray-400 mb-4">42 Years of Educational Excellence • Est. 1982</div>
-          <div className="text-purple-300">Computers • Robotics • AI Future</div>
+          <div className="text-2xl font-bold mb-2">{t.footer.company}</div>
+          <div className="text-gray-400 mb-4">{t.footer.tagline}</div>
+          <div className="text-purple-300">{t.footer.focus}</div>
           <div className="mt-8 text-sm text-gray-500">
-            © 2025 TEC Sri Lanka Worldwide. All rights reserved.
+            {t.footer.copyright}
           </div>
         </div>
       </footer>
