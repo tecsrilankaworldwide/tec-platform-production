@@ -57,21 +57,9 @@ const PublicLanding = () => {
     {
       id: 'leaders',
       emoji: '🎯',
-      name: 'Future Leaders Mastery',
-      ageRange: 'Ages 16-18',
-      subtitle: 'Leadership Excellence',
       monthly: 2500,
       quarterly: 8750,
       savings: 2250,
-      features: [
-        'AI & Machine Learning Mastery',
-        'Enterprise App Development',
-        'Advanced Data Science',
-        'Complex Algorithmic Systems',
-        'Leadership & Entrepreneurship',
-        'Global Career Preparation',
-        'Executive Mentorship Program'
-      ]
     }
   ];
 
