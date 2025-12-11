@@ -142,7 +142,7 @@ export const translations = {
     // Features Section
     features: {
       badge: "World-Class Excellence",
-      title: "Why TecaiKids Leads Sri Lanka",
+      title: "Why TecaiKids Leads the WORLD",
       list: [
         {
           title: "AI-Powered Personalization",
@@ -150,11 +150,11 @@ export const translations = {
         },
         {
           title: "Expert Curriculum Design",
-          description: "Content developed by NIE-trained educators and international experts."
+          description: "Content developed by globally certified educators and international experts."
         },
         {
           title: "Global Career Readiness",
-          description: "Preparing students for international opportunities while strengthening Sri Lankan identity."
+          description: "Preparing students for international opportunities with world-class education."
         },
         {
           title: "Premium Learning Experience",
