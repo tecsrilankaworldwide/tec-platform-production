@@ -13,7 +13,8 @@ const LanguageSwitcher = () => {
     { code: 'ar', name: 'العربية', flag: '🇸🇦' },
     { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
     { code: 'ms', name: 'Bahasa Melayu', flag: '🇲🇾' },
-    { code: 'bn', name: 'বাংলা', flag: '🇧🇩' }
+    { code: 'bn', name: 'বাংলা', flag: '🇧🇩' },
+    { code: 'ur', name: 'اردو', flag: '🇵🇰' }
   ];
 
   return (
