@@ -9,7 +9,11 @@ const LanguageSwitcher = () => {
     { code: 'si', name: 'සිංහල', flag: '🇱🇰' },
     { code: 'ta', name: 'தமிழ்', flag: '🇱🇰' },
     { code: 'zh-CN', name: '简体中文', flag: '🇨🇳' },
-    { code: 'zh-TW', name: '繁體中文', flag: '🇹🇼' }
+    { code: 'zh-TW', name: '繁體中文', flag: '🇹🇼' },
+    { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+    { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
+    { code: 'ms', name: 'Bahasa Melayu', flag: '🇲🇾' },
+    { code: 'bn', name: 'বাংলা', flag: '🇧🇩' }
   ];
 
   return (
