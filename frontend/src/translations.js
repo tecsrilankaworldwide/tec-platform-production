@@ -3,11 +3,11 @@
 export const translations = {
   en: {
     // Header
-    badge: "🏆 Sri Lanka's Premier Educational Platform",
+    badge: "🏆 World's Premier Educational Platform",
     hero: {
       title: "Empowering Future Leaders",
       subtitle: "Professional Education Ages 4-18",
-      description: "World-class education platform featuring logical thinking, algorithmic reasoning, coding, AI, and career preparation. Designed specifically for Sri Lankan excellence with expert curriculum and cutting-edge technology.",
+      description: "World-class education platform featuring logical thinking, algorithmic reasoning, coding, AI, and career preparation. Designed for global excellence with expert curriculum and cutting-edge technology.",
       ctaPrimary: "Start Excellence Journey 🚀",
       ctaSecondary: "Explore Programs"
     },
