@@ -522,7 +522,353 @@ export const translations = {
       company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd",
       tagline: "42 ஆண்டுகள் கல்வி சிறப்பு • நிறுவப்பட்டது 1982",
       focus: "கணினிகள் • ரோபோடிக்ஸ் • AI எதிர்காலம்",
-      copyright: "© 2025 TEC Sri Lanka Worldwide. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+      copyright: "© 2025 TEC WORLD Worldwide. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+    }
+  },
+  
+  'zh-CN': {
+    // Header (Simplified Chinese)
+    badge: "🏆 世界顶级教育平台",
+    hero: {
+      title: "赋能未来领袖",
+      subtitle: "专业教育 4-18岁",
+      description: "世界级教育平台，包含逻辑思维、算法推理、编程、人工智能和职业准备。专为全球卓越设计，配备专家课程和尖端技术。",
+      ctaPrimary: "开启卓越之旅 🚀",
+      ctaSecondary: "探索课程"
+    },
+    
+    stats: {
+      students: "注册学生",
+      success: "成功率",
+      educators: "专家教师",
+      support: "学习支持"
+    },
+    
+    quickPay: {
+      title: "⚡ 快速支付选项",
+      subtitle: "先支付，后注册",
+      description: "完美适合异地客户！先付款，通过WhatsApp完成注册",
+      bankTitle: "🏦 银行转账详情",
+      bank: "银行：",
+      bankName: "锡兰银行",
+      accountName: "账户名称：",
+      accountHolder: "TEC WORLD Worldwide",
+      accountNumber: "账号：",
+      branch: "分行：",
+      branchName: "Nugegoda",
+      qrTitle: "📱 扫码支付 (LankaQR)",
+      qrPlaceholder: "二维码即将推出！",
+      qrAvailable: "明天可用",
+      qrDescription: "使用任何斯里兰卡银行应用扫描即时支付",
+      pricingTitle: "💰 课程定价",
+      quarterly: "季度计划：节省25%",
+      howItWorks: "📋 如何操作：",
+      step1: "进行支付：",
+      step1Desc: "转账至账户0075715067或使用二维码",
+      step2: "拍照留存：",
+      step2Desc: "银行收据或在线转账确认的截图/照片",
+      step3: "WhatsApp联系我们：",
+      step3Desc: "发送收据+学生详情（姓名、年龄、家长联系方式）",
+      step4: "完成注册：",
+      step4Desc: "我们将完成注册并发送登录详情！",
+      whatsappBtn: "📱 WhatsApp支付收据：+94 77 977 9668",
+      availability: "💬 服务时间：上午9点-下午6点（周一至周六）"
+    },
+    
+    programs: {
+      badge: "专业学习路径",
+      title: "卓越课程",
+      ageRange: "年龄4-18",
+      description: "科学设计的课程随着您的孩子成长，确保每个阶段的精通，并为全球机遇做好准备。",
+      enrollBtn: "立即注册 →",
+      monthly: "/月",
+      quarterly: "/季度",
+      save: "节省",
+      savings: "节省"
+    },
+    
+    programsList: {
+      foundation: {
+        name: "小小学习者基础班",
+        ageRange: "年龄4-6",
+        subtitle: "基础卓越",
+        features: [
+          "高级数字和字母精通",
+          "互动色彩和形状理论",
+          "基础逻辑思维",
+          "游戏化学习冒险",
+          "专家家长辅导",
+          "优质实体练习册",
+          "进度分析仪表板"
+        ]
+      },
+      explorers: {
+        name: "年轻探险家发现班",
+        ageRange: "年龄7-9",
+        subtitle: "发现卓越",
+        features: [
+          "高级数学与统计",
+          "虚拟科学实验室",
+          "批判性阅读与分析",
+          "中级逻辑思维",
+          "数字艺术与设计",
+          "AI驱动的进度跟踪",
+          "同伴学习网络"
+        ]
+      },
+      smart: {
+        name: "聪明儿童精通班",
+        ageRange: "年龄10-12",
+        subtitle: "精通卓越",
+        features: [
+          "高等数学与微积分准备",
+          "专业编程基础",
+          "实际STEM项目",
+          "高级逻辑推理",
+          "算法思维精通",
+          "批判性问题解决",
+          "导师指导学习"
+        ]
+      },
+      teens: {
+        name: "科技青少年专业班",
+        ageRange: "年龄13-15",
+        subtitle: "专业卓越",
+        features: [
+          "专业编程语言",
+          "全栈网站开发",
+          "移动应用开发",
+          "高级算法设计",
+          "行业级项目",
+          "科技职业准备",
+          "一对一行业指导"
+        ]
+      },
+      leaders: {
+        name: "未来领袖精通班",
+        ageRange: "年龄16-18",
+        subtitle: "领导力卓越",
+        features: [
+          "AI和机器学习精通",
+          "企业应用开发",
+          "高级数据科学",
+          "复杂算法系统",
+          "领导力与创业精神",
+          "全球职业准备",
+          "高管指导计划"
+        ]
+      }
+    },
+    
+    features: {
+      badge: "世界级卓越",
+      title: "为什么TecaiKids引领世界",
+      list: [
+        {
+          title: "AI驱动个性化",
+          description: "先进的机器学习算法根据您孩子的学习风格定制每一课。"
+        },
+        {
+          title: "专家课程设计",
+          description: "由全球认证教育工作者和国际专家开发的内容。"
+        },
+        {
+          title: "全球职业准备",
+          description: "通过世界级教育为学生的国际机遇做准备。"
+        },
+        {
+          title: "优质学习体验",
+          description: "高质量的互动内容和沉浸式体验，激发卓越。"
+        },
+        {
+          title: "高级分析",
+          description: "全面的进度跟踪和详细分析，实现最佳学习成果。"
+        },
+        {
+          title: "专家指导",
+          description: "通过我们独家的学习社区与行业专业人士联系。"
+        }
+      ]
+    },
+    
+    footer: {
+      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      tagline: "42年教育卓越 • 成立于1982年",
+      focus: "计算机 • 机器人 • AI未来",
+      copyright: "© 2025 TEC WORLD Worldwide. 保留所有权利。"
+    }
+  },
+  
+  'zh-TW': {
+    // Header (Traditional Chinese)
+    badge: "🏆 世界頂級教育平台",
+    hero: {
+      title: "賦能未來領袖",
+      subtitle: "專業教育 4-18歲",
+      description: "世界級教育平台，包含邏輯思維、算法推理、編程、人工智慧和職業準備。專為全球卓越設計，配備專家課程和尖端技術。",
+      ctaPrimary: "開啟卓越之旅 🚀",
+      ctaSecondary: "探索課程"
+    },
+    
+    stats: {
+      students: "註冊學生",
+      success: "成功率",
+      educators: "專家教師",
+      support: "學習支援"
+    },
+    
+    quickPay: {
+      title: "⚡ 快速支付選項",
+      subtitle: "先支付，後註冊",
+      description: "完美適合異地客戶！先付款，通過WhatsApp完成註冊",
+      bankTitle: "🏦 銀行轉帳詳情",
+      bank: "銀行：",
+      bankName: "錫蘭銀行",
+      accountName: "帳戶名稱：",
+      accountHolder: "TEC WORLD Worldwide",
+      accountNumber: "帳號：",
+      branch: "分行：",
+      branchName: "Nugegoda",
+      qrTitle: "📱 掃碼支付 (LankaQR)",
+      qrPlaceholder: "二維碼即將推出！",
+      qrAvailable: "明天可用",
+      qrDescription: "使用任何斯里蘭卡銀行應用掃描即時支付",
+      pricingTitle: "💰 課程定價",
+      quarterly: "季度計劃：節省25%",
+      howItWorks: "📋 如何操作：",
+      step1: "進行支付：",
+      step1Desc: "轉帳至帳戶0075715067或使用二維碼",
+      step2: "拍照留存：",
+      step2Desc: "銀行收據或線上轉帳確認的截圖/照片",
+      step3: "WhatsApp聯繫我們：",
+      step3Desc: "發送收據+學生詳情（姓名、年齡、家長聯繫方式）",
+      step4: "完成註冊：",
+      step4Desc: "我們將完成註冊並發送登錄詳情！",
+      whatsappBtn: "📱 WhatsApp支付收據：+94 77 977 9668",
+      availability: "💬 服務時間：上午9點-下午6點（週一至週六）"
+    },
+    
+    programs: {
+      badge: "專業學習路徑",
+      title: "卓越課程",
+      ageRange: "年齡4-18",
+      description: "科學設計的課程隨著您的孩子成長，確保每個階段的精通，並為全球機遇做好準備。",
+      enrollBtn: "立即註冊 →",
+      monthly: "/月",
+      quarterly: "/季度",
+      save: "節省",
+      savings: "節省"
+    },
+    
+    programsList: {
+      foundation: {
+        name: "小小學習者基礎班",
+        ageRange: "年齡4-6",
+        subtitle: "基礎卓越",
+        features: [
+          "高級數字和字母精通",
+          "互動色彩和形狀理論",
+          "基礎邏輯思維",
+          "遊戲化學習冒險",
+          "專家家長輔導",
+          "優質實體練習冊",
+          "進度分析儀表板"
+        ]
+      },
+      explorers: {
+        name: "年輕探險家發現班",
+        ageRange: "年齡7-9",
+        subtitle: "發現卓越",
+        features: [
+          "高級數學與統計",
+          "虛擬科學實驗室",
+          "批判性閱讀與分析",
+          "中級邏輯思維",
+          "數位藝術與設計",
+          "AI驅動的進度追蹤",
+          "同儕學習網路"
+        ]
+      },
+      smart: {
+        name: "聰明兒童精通班",
+        ageRange: "年齡10-12",
+        subtitle: "精通卓越",
+        features: [
+          "高等數學與微積分準備",
+          "專業編程基礎",
+          "實際STEM項目",
+          "高級邏輯推理",
+          "算法思維精通",
+          "批判性問題解決",
+          "導師指導學習"
+        ]
+      },
+      teens: {
+        name: "科技青少年專業班",
+        ageRange: "年齡13-15",
+        subtitle: "專業卓越",
+        features: [
+          "專業編程語言",
+          "全端網站開發",
+          "行動應用開發",
+          "高級算法設計",
+          "產業級項目",
+          "科技職業準備",
+          "一對一產業指導"
+        ]
+      },
+      leaders: {
+        name: "未來領袖精通班",
+        ageRange: "年齡16-18",
+        subtitle: "領導力卓越",
+        features: [
+          "AI和機器學習精通",
+          "企業應用開發",
+          "高級資料科學",
+          "複雜算法系統",
+          "領導力與創業精神",
+          "全球職業準備",
+          "高階主管指導計畫"
+        ]
+      }
+    },
+    
+    features: {
+      badge: "世界級卓越",
+      title: "為什麼TecaiKids引領世界",
+      list: [
+        {
+          title: "AI驅動個人化",
+          description: "先進的機器學習演算法根據您孩子的學習風格客製化每一課。"
+        },
+        {
+          title: "專家課程設計",
+          description: "由全球認證教育工作者和國際專家開發的內容。"
+        },
+        {
+          title: "全球職業準備",
+          description: "透過世界級教育為學生的國際機遇做準備。"
+        },
+        {
+          title: "優質學習體驗",
+          description: "高品質的互動內容和沉浸式體驗，激發卓越。"
+        },
+        {
+          title: "高級分析",
+          description: "全面的進度追蹤和詳細分析，實現最佳學習成果。"
+        },
+        {
+          title: "專家指導",
+          description: "透過我們獨家的學習社群與產業專業人士聯繫。"
+        }
+      ]
+    },
+    
+    footer: {
+      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      tagline: "42年教育卓越 • 成立於1982年",
+      focus: "電腦 • 機器人 • AI未來",
+      copyright: "© 2025 TEC WORLD Worldwide. 保留所有權利。"
     }
   }
 };
