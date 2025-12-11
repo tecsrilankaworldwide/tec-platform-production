@@ -173,10 +173,10 @@ export const translations = {
     
     // Footer
     footer: {
-      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
       tagline: "42 Years of Educational Excellence • Est. 1982",
       focus: "Computers • Robotics • AI Future",
-      copyright: "© 2025 TEC Sri Lanka Worldwide. All rights reserved."
+      copyright: "© 2025 TEC WORLD Worldwide. All rights reserved."
     }
   },
   
