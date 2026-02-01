@@ -1,43 +1,27 @@
 [
   {
-    "content": "Phase 2: Backend - Implement full referral system with stats and rewards",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 2: Backend - Create public certificate share page with OG tags",
-    "status": "completed"
-  },
-  {
     "content": "Phase 2: Backend - Apply performance optimizations (indexes, caching, projections)",
-    "status": "in_progress"
-  },
-  {
-    "content": "Phase 2: Frontend - Create Invite & Earn referral page with share buttons",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 2: Frontend - Add certificate social share buttons",
     "status": "completed"
   },
   {
     "content": "Phase 2: Frontend - Implement code splitting and lazy loading",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Frontend - Add skeleton loaders and loading states",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Frontend - Improve mobile responsiveness and navigation",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Frontend - Add data-testid attributes to interactive elements",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Testing - Run testing_agent for end-to-end validation",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 2: Testing - Fix all issues and re-test until passing",
