@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-02-01T12:26:32.930336",
+  "total_tests": 8,
+  "passed": 7,
+  "failed": 1,
+  "success_rate": "87.5%",
+  "test_results": [
+    {
+      "test": "Login (test_poc@tecaikids.com)",
+      "passed": true,
+      "details": "Token received, User ID: 09ee46cc-adde-4510-9b00-a7d8e97e149a"
+    },
+    {
+      "test": "Generate Referral Code",
+      "passed": true,
+      "details": "Code: POCTKYK, Link: https://tecaikids.com/?ref=POCTKYK"
+    },
+    {
+      "test": "Track Referral Click",
+      "passed": true,
+      "details": "Response: {\"status\": \"tracked\", \"message\": \"Referral click recorded\"}"
+    },
+    {
+      "test": "Get Referral Stats",
+      "passed": true,
+      "details": "Clicks: 2, Conversions: 1, Rewards: 100 XP"
+    },
+    {
+      "test": "Get User Certificates",
+      "passed": true,
+      "details": "Retrieved 0 certificates"
+    },
+    {
+      "test": "Certificate Share JSON",
+      "passed": true,
+      "details": "Certificate CERT-TEST-001 not found (expected for test cert)"
+    },
+    {
+      "test": "OG Image Generation",
+      "passed": true,
+      "details": "PNG image generated, Size: 34050 bytes"
+    },
+    {
+      "test": "Public Certificate Share Page",
+      "passed": false,
+      "details": "Missing meta tags: {'og:description', 'og:image', 'og:title'}"
+    }
+  ]
+}
