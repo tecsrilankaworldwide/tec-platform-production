@@ -1,14 +1,34 @@
 [
   {
-    "content": "Phase 2: Testing - Run testing_agent for end-to-end validation",
-    "status": "completed"
+    "content": "Phase A: Deployment - Prepare environment for production",
+    "status": "in_progress"
   },
   {
-    "content": "Phase 2: Testing - Fix all issues and re-test until passing",
-    "status": "completed"
+    "content": "Phase A: Free Trial - Add backend trial tracking",
+    "status": "in_progress"
   },
   {
-    "content": "Phase 2: All user stories covered in Development and testing",
-    "status": "completed"
+    "content": "Phase A: Free Trial - Create trial enrollment endpoint",
+    "status": "pending"
+  },
+  {
+    "content": "Phase A: Free Trial - Update frontend with trial CTA",
+    "status": "pending"
+  },
+  {
+    "content": "Phase A: Test Free Trial flow",
+    "status": "pending"
+  },
+  {
+    "content": "Phase B: Zoom Integration - Get integration playbook",
+    "status": "pending"
+  },
+  {
+    "content": "Phase B: Zoom Integration - Implement backend",
+    "status": "pending"
+  },
+  {
+    "content": "Phase B: Zoom Integration - Implement frontend",
+    "status": "pending"
   }
 ]
