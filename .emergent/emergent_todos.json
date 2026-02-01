@@ -1,30 +1,14 @@
 [
   {
-    "content": "Phase 2: Backend - Apply performance optimizations (indexes, caching, projections)",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 2: Frontend - Implement code splitting and lazy loading",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 2: Frontend - Add skeleton loaders and loading states",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 2: Frontend - Improve mobile responsiveness and navigation",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 2: Frontend - Add data-testid attributes to interactive elements",
-    "status": "completed"
-  },
-  {
     "content": "Phase 2: Testing - Run testing_agent for end-to-end validation",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Testing - Fix all issues and re-test until passing",
-    "status": "pending"
+    "status": "completed"
+  },
+  {
+    "content": "Phase 2: All user stories covered in Development and testing",
+    "status": "completed"
   }
 ]
