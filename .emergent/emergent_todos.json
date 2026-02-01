@@ -1,0 +1,62 @@
+[
+  {
+    "content": "Phase 1: POC - Create referral tracking endpoints (code generation, click tracking, conversion)",
+    "status": "in_progress"
+  },
+  {
+    "content": "Phase 1: POC - Create certificate OG image generation endpoint",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 1: POC - Add database indexes for performance",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 1: POC - Create and run test_core.py to verify POC flows",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Backend - Implement full referral system with stats and rewards",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Backend - Create public certificate share page with OG tags",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Backend - Apply performance optimizations (indexes, caching, projections)",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Frontend - Create Invite & Earn referral page with share buttons",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Frontend - Add certificate social share buttons",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Frontend - Implement code splitting and lazy loading",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Frontend - Add skeleton loaders and loading states",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Frontend - Improve mobile responsiveness and navigation",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Frontend - Add data-testid attributes to interactive elements",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Testing - Run testing_agent for end-to-end validation",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Testing - Fix all issues and re-test until passing",
+    "status": "pending"
+  }
+]
