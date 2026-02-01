@@ -43,10 +43,10 @@ async def test_referral_flow():
     # Step 1: Generate referral code
     print_test("Step 1: Generate Referral Code")
     try:
-        # First login to get token
+        # First login to get token (using POC test user)
         login_response = requests.post(
             f"{API_URL}/login",
-            json={"email": "admin@tecaikids.com", "password": "admin123"}
+            json={"email": "test_poc@tecaikids.com", "password": "test123"}
         )
         if login_response.status_code != 200:
             print_error(f"Login failed: {login_response.text}")
@@ -159,10 +159,10 @@ async def test_certificate_social_sharing():
     # Step 1: Get existing certificate
     print_test("Step 1: Fetch Test Certificate")
     try:
-        # Login as student
+        # Login as student (using POC test user)
         login_response = requests.post(
             f"{API_URL}/login",
-            json={"email": "sri.foundation@test.com", "password": "test123"}
+            json={"email": "test_poc@tecaikids.com", "password": "test123"}
         )
         if login_response.status_code != 200:
             print_error(f"Login failed: {login_response.text}")
