@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
@@ -15,30 +15,39 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import TeacherDashboard from "./components/dashboard/TeacherDashboard";
 
-// Feature Components
-import AIChatPage from "./components/AIChatPage";
-import GamificationPage from "./components/GamificationPage";
-import QuizPage from "./components/QuizPage";
-import CertificatesPage from "./components/CertificatesPage";
-import LiveClassesPage from "./components/LiveClassesPage";
-import ChallengesPage from "./components/ChallengesPage";
-import AdminDashboard from "./components/AdminDashboard";
-import StudentDashboard from "./components/StudentDashboard";
-import VerificationPage from "./components/VerificationPage";
-import ParentPortal from "./components/ParentPortal";
-import AttendanceManager from "./components/AttendanceManager";
-import TeacherCertificates from "./components/TeacherCertificates";
-import LevelBasedLearning from "./components/LevelBasedLearning";
-import StudentShowcase from "./components/StudentShowcase";
-import TechAIMagazine from "./components/TechAIMagazine";
-import ClassScheduler from "./components/ClassScheduler";
-import ArticleEditor from "./components/ArticleEditor";
-import WhatsAppAdmin from "./components/WhatsAppAdmin";
-import ArticleReviewDashboard from "./components/ArticleReviewDashboard";
-import Leaderboard from "./components/Leaderboard";
-import BatchShowcase from "./components/BatchShowcase";
-import ReferralSystem from "./components/ReferralSystem";
-import InviteAndEarn from "./components/InviteAndEarn";
+// Lazy load heavy components for better performance
+const AIChatPage = lazy(() => import("./components/AIChatPage"));
+const GamificationPage = lazy(() => import("./components/GamificationPage"));
+const QuizPage = lazy(() => import("./components/QuizPage"));
+const CertificatesPage = lazy(() => import("./components/CertificatesPage"));
+const LiveClassesPage = lazy(() => import("./components/LiveClassesPage"));
+const ChallengesPage = lazy(() => import("./components/ChallengesPage"));
+const AdminDashboard = lazy(() => import("./components/AdminDashboard"));
+const StudentDashboard = lazy(() => import("./components/StudentDashboard"));
+const VerificationPage = lazy(() => import("./components/VerificationPage"));
+const ParentPortal = lazy(() => import("./components/ParentPortal"));
+const AttendanceManager = lazy(() => import("./components/AttendanceManager"));
+const TeacherCertificates = lazy(() => import("./components/TeacherCertificates"));
+const LevelBasedLearning = lazy(() => import("./components/LevelBasedLearning"));
+const StudentShowcase = lazy(() => import("./components/StudentShowcase"));
+const TechAIMagazine = lazy(() => import("./components/TechAIMagazine"));
+const ClassScheduler = lazy(() => import("./components/ClassScheduler"));
+const ArticleEditor = lazy(() => import("./components/ArticleEditor"));
+const WhatsAppAdmin = lazy(() => import("./components/WhatsAppAdmin"));
+const ArticleReviewDashboard = lazy(() => import("./components/ArticleReviewDashboard"));
+const Leaderboard = lazy(() => import("./components/Leaderboard"));
+const BatchShowcase = lazy(() => import("./components/BatchShowcase"));
+const InviteAndEarn = lazy(() => import("./components/InviteAndEarn"));
+
+// Loading component for Suspense
+const LoadingFallback = () => (
+  <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
+    <div className="text-center">
+      <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-lg text-gray-600 font-medium">Loading...</p>
+    </div>
+  </div>
+);
 
 // Enrollment Success/Cancel Components
 const EnrollmentSuccess = () => {
