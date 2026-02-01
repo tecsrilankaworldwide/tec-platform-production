@@ -7147,6 +7147,189 @@ async def get_certificate_share_data(cert_number: str):
     }
 
 # ============================================================================
+# PUBLIC CERTIFICATE SHARE PAGE (HTML with OG Meta Tags)
+# ============================================================================
+
+@app.get("/certificates/share/{cert_number}")
+async def public_certificate_share_page(cert_number: str):
+    """Public HTML page for certificate sharing with Open Graph meta tags"""
+    from fastapi.responses import HTMLResponse
+    
+    # Get certificate
+    cert = await db.certificates.find_one({"certificate_number": cert_number}, {"_id": 0})
+    
+    if not cert:
+        return HTMLResponse(content="<h1>Certificate not found</h1>", status_code=404)
+    
+    # Build meta tags
+    frontend_url = os.environ.get("FRONTEND_URL", "https://tecaikids.com")
+    api_url = os.environ.get("REACT_APP_BACKEND_URL", "http://localhost:8001")
+    
+    student_name = cert.get("student_name", "Student")
+    # Obfuscate last name for privacy
+    name_parts = student_name.split()
+    if len(name_parts) > 1:
+        display_name = f"{name_parts[0]} {name_parts[-1][0]}."
+    else:
+        display_name = name_parts[0]
+    
+    og_title = f"🎓 {display_name} earned a TEC Certificate!"
+    og_description = f"Certificate of {cert.get('certificate_type', 'achievement').title()} - {cert.get('course_name', 'TEC Program')}"
+    og_image = f"{api_url}/api/og/cert/{cert_number}.png"
+    page_url = f"{frontend_url}/certificates/share/{cert_number}"
+    
+    issued_date = cert.get("issued_date", cert.get("completion_date", ""))
+    
+    html_content = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{og_title}</title>
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{page_url}">
+        <meta property="og:title" content="{og_title}">
+        <meta property="og:description" content="{og_description}">
+        <meta property="og:image" content="{og_image}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{page_url}">
+        <meta property="twitter:title" content="{og_title}">
+        <meta property="twitter:description" content="{og_description}">
+        <meta property="twitter:image" content="{og_image}">
+        
+        <style>
+            * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+            body {{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }}
+            .container {{
+                background: white;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                max-width: 600px;
+                width: 100%;
+                padding: 40px;
+                text-align: center;
+            }}
+            .icon {{
+                font-size: 80px;
+                margin-bottom: 20px;
+                animation: bounce 2s infinite;
+            }}
+            @keyframes bounce {{
+                0%, 100% {{ transform: translateY(0); }}
+                50% {{ transform: translateY(-20px); }}
+            }}
+            h1 {{
+                color: #7C3AED;
+                font-size: 32px;
+                margin-bottom: 10px;
+            }}
+            .student-name {{
+                color: #1E293B;
+                font-size: 28px;
+                font-weight: bold;
+                margin: 20px 0;
+            }}
+            .cert-type {{
+                background: linear-gradient(135deg, #7C3AED, #EC4899);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 50px;
+                display: inline-block;
+                margin: 10px 0;
+                font-weight: 600;
+            }}
+            .course {{
+                color: #64748B;
+                font-size: 18px;
+                margin: 15px 0;
+            }}
+            .cert-number {{
+                background: #F1F5F9;
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-family: 'Courier New', monospace;
+                color: #475569;
+                margin: 20px 0;
+                font-size: 14px;
+            }}
+            .date {{
+                color: #94A3B8;
+                font-size: 14px;
+                margin: 10px 0;
+            }}
+            .footer {{
+                margin-top: 30px;
+                padding-top: 30px;
+                border-top: 2px solid #E2E8F0;
+                color: #64748B;
+                font-size: 14px;
+            }}
+            .logo {{
+                font-weight: bold;
+                color: #7C3AED;
+                font-size: 16px;
+            }}
+            .cta {{
+                margin-top: 30px;
+            }}
+            .btn {{
+                display: inline-block;
+                background: linear-gradient(135deg, #7C3AED, #EC4899);
+                color: white;
+                text-decoration: none;
+                padding: 15px 40px;
+                border-radius: 50px;
+                font-weight: 600;
+                font-size: 16px;
+                transition: transform 0.2s;
+            }}
+            .btn:hover {{
+                transform: scale(1.05);
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="icon">🎓</div>
+            <h1>TEC Certificate of Achievement</h1>
+            <div class="student-name">{display_name}</div>
+            <div class="cert-type">Certificate of {cert.get('certificate_type', 'achievement').title()}</div>
+            <div class="course">{cert.get('course_name', 'TEC Program')}</div>
+            <div class="cert-number">Certificate No: {cert_number}</div>
+            <div class="date">Issued: {issued_date}</div>
+            
+            <div class="cta">
+                <a href="{frontend_url}" class="btn">Explore TEC Programs →</a>
+            </div>
+            
+            <div class="footer">
+                <div class="logo">🚀 TEC Sri Lanka Worldwide</div>
+                <div style="margin-top: 10px;">42 Years of Educational Excellence since 1982</div>
+                <div style="margin-top: 10px; font-size: 12px;">Building Future-Ready Kids | www.tecaikids.com</div>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    
+    return HTMLResponse(content=html_content)
+
+# ============================================================================
 # DATABASE INDEXES (Run on startup)
 # ============================================================================
 
