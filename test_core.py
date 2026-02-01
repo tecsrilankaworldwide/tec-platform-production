@@ -45,7 +45,7 @@ async def test_referral_flow():
     try:
         # First login to get token
         login_response = requests.post(
-            f"{API_URL}/auth/login",
+            f"{API_URL}/login",
             json={"email": "admin@tecaikids.com", "password": "admin123"}
         )
         if login_response.status_code != 200:
@@ -161,7 +161,7 @@ async def test_certificate_social_sharing():
     try:
         # Login as student
         login_response = requests.post(
-            f"{API_URL}/auth/login",
+            f"{API_URL}/login",
             json={"email": "sri.foundation@test.com", "password": "test123"}
         )
         if login_response.status_code != 200:
