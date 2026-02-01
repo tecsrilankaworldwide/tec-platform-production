@@ -295,6 +295,65 @@ const StudentDashboard = () => {
       <div className="max-w-6xl mx-auto p-6">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left Column - Stats */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* XP & Level Card */}
+              <div className="bg-white rounded-xl shadow p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold flex items-center">
+                    <Zap className="text-yellow-500 mr-2" />
+                    Your Progress
+                  </h3>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className={`${ageColors.light} rounded-lg p-4`}>
+                    <div className={`text-3xl font-bold ${ageColors.text}`}>{gamification?.xp || 0}</div>
+                    <div className="text-gray-600 text-sm">Total XP</div>
+                  </div>
+                  <div className={`${ageColors.light} rounded-lg p-4`}>
+                    <div className={`text-3xl font-bold ${ageColors.text}`}>{gamification?.level || 1}</div>
+                    <div className="text-gray-600 text-sm">Current Level</div>
+                  </div>
+                </div>
+
+                {/* Progress Bar */}
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-gray-600">Level {gamification?.level || 1}</span>
+                    <span className="text-gray-600">{gamification?.xp || 0} / {gamification?.next_level_xp || 100} XP</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div
+                      className={`h-3 rounded-full bg-gradient-to-r ${ageColors.bg} transition-all`}
+                      style={{ width: `${((gamification?.xp || 0) / (gamification?.next_level_xp || 100)) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Streak & Activity */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl shadow p-6 text-center">
+                  <div className="text-5xl mb-2">🔥</div>
+                  <div className="text-3xl font-bold text-orange-500">{gamification?.streak_days || 0}</div>
+                  <div className="text-gray-600 text-sm">Day Streak</div>
+                </div>
+                <div className="bg-white rounded-xl shadow p-6 text-center">
+                  <div className="text-5xl mb-2">🏆</div>
+                  <div className="text-3xl font-bold text-purple-500">{gamification?.badges?.length || 0}</div>
+                  <div className="text-gray-600 text-sm">Badges Earned</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Weekly Quote */}
+            <div className="lg:col-span-1">
+              <WeeklyQuote placement="sidebar" />
+            </div>
+          </div>
+        )}
           <div className="space-y-6">
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
