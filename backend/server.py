@@ -7183,6 +7183,8 @@ app.include_router(api_router)
 @app.on_event("startup")
 async def startup_event():
     """Initialize services on startup"""
+    # Create database indexes for performance
+    await create_indexes()
     # Initialize the reminder scheduler
     init_reminder_scheduler(db, notify_class_reminder)
     # Initialize the progress report scheduler
