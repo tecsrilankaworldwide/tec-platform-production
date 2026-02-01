@@ -6793,6 +6793,390 @@ async def get_scheduled_reminders(current_user: User = Depends(get_current_teach
         "total": len(reminders)
     }
 
+# ============================================================================
+# REFERRAL SYSTEM POC ENDPOINTS
+# ============================================================================
+
+class ReferralCodeResponse(BaseModel):
+    referral_code: str
+    referral_link: str
+
+class ReferralStatsResponse(BaseModel):
+    referral_code: str
+    total_clicks: int
+    total_conversions: int
+    total_rewards: int
+
+@api_router.post("/referrals/code", response_model=ReferralCodeResponse)
+async def generate_referral_code(current_user: User = Depends(get_current_user)):
+    """Generate or retrieve referral code for current user"""
+    import hashlib
+    import random
+    import string
+    
+    # Check if user already has a code
+    if current_user.referral_code:
+        frontend_url = os.environ.get("FRONTEND_URL", "https://tecaikids.com")
+        return {
+            "referral_code": current_user.referral_code,
+            "referral_link": f"{frontend_url}/?ref={current_user.referral_code}"
+        }
+    
+    # Generate unique code: first 4 chars of name + 4 random chars
+    base = (current_user.full_name.split()[0][:4] if current_user.full_name else "USER").upper()
+    random_suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+    referral_code = f"{base}{random_suffix}"
+    
+    # Ensure uniqueness
+    max_attempts = 10
+    for _ in range(max_attempts):
+        existing = await db.users.find_one({"referral_code": referral_code})
+        if not existing:
+            break
+        random_suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+        referral_code = f"{base}{random_suffix}"
+    
+    # Update user with referral code
+    await db.users.update_one(
+        {"id": current_user.id},
+        {"$set": {"referral_code": referral_code}}
+    )
+    
+    frontend_url = os.environ.get("FRONTEND_URL", "https://tecaikids.com")
+    return {
+        "referral_code": referral_code,
+        "referral_link": f"{frontend_url}/?ref={referral_code}"
+    }
+
+@api_router.get("/referrals/track")
+async def track_referral_click(
+    request: Request,
+    ref: str
+):
+    """Track referral link click"""
+    import hashlib
+    
+    # Verify referral code exists
+    referrer = await db.users.find_one({"referral_code": ref})
+    if not referrer:
+        raise HTTPException(status_code=404, detail="Invalid referral code")
+    
+    # Get client info
+    user_agent = request.headers.get("user-agent", "unknown")
+    client_ip = request.client.host if request.client else "unknown"
+    ip_hash = hashlib.sha256(client_ip.encode()).hexdigest()[:16]
+    
+    # Check if this IP clicked in last 24h (anti-spam)
+    day_ago = datetime.now(timezone.utc) - timedelta(days=1)
+    recent_click = await db.referral_events.find_one({
+        "ref_code": ref,
+        "ip_hash": ip_hash,
+        "event_type": "click",
+        "created_at": {"$gte": day_ago}
+    })
+    
+    if not recent_click:
+        # Record click event
+        click_event = {
+            "id": str(uuid.uuid4()),
+            "ref_code": ref,
+            "referrer_id": referrer.get("id"),
+            "event_type": "click",
+            "user_agent": user_agent,
+            "ip_hash": ip_hash,
+            "created_at": datetime.now(timezone.utc)
+        }
+        await db.referral_events.insert_one(click_event)
+    
+    # Set referral cookie (7 days expiry)
+    response = Response(
+        content='{"status": "tracked", "message": "Referral click recorded"}',
+        media_type="application/json"
+    )
+    response.set_cookie(
+        key="ref_code",
+        value=ref,
+        max_age=7 * 24 * 60 * 60,  # 7 days
+        httponly=True,
+        samesite="lax"
+    )
+    
+    return response
+
+@api_router.post("/referrals/convert")
+async def track_referral_conversion(
+    conversion_data: dict
+):
+    """Track successful conversion (signup) from referral"""
+    new_user_id = conversion_data.get("new_user_id")
+    ref_code = conversion_data.get("ref_code")
+    
+    if not new_user_id or not ref_code:
+        raise HTTPException(status_code=400, detail="Missing required fields")
+    
+    # Verify referral code exists
+    referrer = await db.users.find_one({"referral_code": ref_code})
+    if not referrer:
+        raise HTTPException(status_code=404, detail="Invalid referral code")
+    
+    # Check if conversion already recorded for this user
+    existing_conversion = await db.referral_events.find_one({
+        "event_type": "conversion",
+        "new_user_id": new_user_id
+    })
+    
+    if existing_conversion:
+        return {
+            "status": "already_recorded",
+            "message": "Conversion already tracked",
+            "reward_xp": 0
+        }
+    
+    # Record conversion event
+    conversion_event = {
+        "id": str(uuid.uuid4()),
+        "ref_code": ref_code,
+        "referrer_id": referrer.get("id"),
+        "event_type": "conversion",
+        "new_user_id": new_user_id,
+        "created_at": datetime.now(timezone.utc)
+    }
+    await db.referral_events.insert_one(conversion_event)
+    
+    # Award XP to referrer (configurable, default 100)
+    reward_xp = 100
+    current_xp = referrer.get("xp", 0)
+    await db.users.update_one(
+        {"id": referrer.get("id")},
+        {
+            "$set": {"xp": current_xp + reward_xp},
+            "$inc": {"referral_conversions": 1}
+        }
+    )
+    
+    return {
+        "status": "success",
+        "message": "Conversion recorded and reward given",
+        "reward_xp": reward_xp
+    }
+
+@api_router.get("/referrals/stats", response_model=ReferralStatsResponse)
+async def get_referral_stats(current_user: User = Depends(get_current_user)):
+    """Get referral statistics for current user"""
+    
+    # Ensure user has referral code
+    if not current_user.referral_code:
+        return {
+            "referral_code": "",
+            "total_clicks": 0,
+            "total_conversions": 0,
+            "total_rewards": 0
+        }
+    
+    # Count clicks
+    clicks_count = await db.referral_events.count_documents({
+        "ref_code": current_user.referral_code,
+        "event_type": "click"
+    })
+    
+    # Count conversions
+    conversions_count = await db.referral_events.count_documents({
+        "ref_code": current_user.referral_code,
+        "event_type": "conversion"
+    })
+    
+    # Calculate total rewards (100 XP per conversion)
+    total_rewards = conversions_count * 100
+    
+    return {
+        "referral_code": current_user.referral_code,
+        "total_clicks": clicks_count,
+        "total_conversions": conversions_count,
+        "total_rewards": total_rewards
+    }
+
+# ============================================================================
+# CERTIFICATE SOCIAL SHARING POC ENDPOINTS
+# ============================================================================
+
+@api_router.get("/og/cert/{cert_number}.png")
+async def generate_og_image(cert_number: str):
+    """Generate Open Graph share image for certificate (1200x630)"""
+    from reportlab.lib.pagesizes import landscape
+    from reportlab.lib import colors
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import inch
+    from reportlab.pdfgen import canvas
+    from io import BytesIO
+    from PIL import Image, ImageDraw, ImageFont
+    
+    # Get certificate data
+    cert = await db.certificates.find_one({"certificate_number": cert_number}, {"_id": 0})
+    
+    if not cert:
+        # Return placeholder for invalid cert
+        cert = {
+            "student_name": "Student",
+            "certificate_type": "achievement",
+            "course_name": "TEC Program"
+        }
+    
+    # Create image with PIL (1200x630 for OG standard)
+    img = Image.new('RGB', (1200, 630), color='#F8F9FA')
+    draw = ImageDraw.Draw(img)
+    
+    # Draw gradient-like background (purple to gold)
+    for i in range(630):
+        # Gradient from purple to gold
+        r = int(124 + (218 - 124) * i / 630)
+        g = int(58 + (165 - 58) * i / 630)
+        b = int(237 + (32 - 237) * i / 630)
+        draw.rectangle([(0, i), (1200, i+1)], fill=(r, g, b))
+    
+    # Add semi-transparent overlay
+    overlay = Image.new('RGBA', (1200, 630), (255, 255, 255, 180))
+    img = Image.alpha_composite(img.convert('RGBA'), overlay).convert('RGB')
+    draw = ImageDraw.Draw(img)
+    
+    # Draw border
+    draw.rectangle([(20, 20), (1180, 610)], outline='#7C3AED', width=8)
+    draw.rectangle([(30, 30), (1170, 600)], outline='#DAA520', width=4)
+    
+    # Add text (using default font for POC)
+    try:
+        # Try to use a nice font if available
+        title_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 72)
+        subtitle_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48)
+        body_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 36)
+    except:
+        # Fallback to default
+        title_font = ImageFont.load_default()
+        subtitle_font = ImageFont.load_default()
+        body_font = ImageFont.load_default()
+    
+    # Draw title
+    title = "🎓 TEC Certificate"
+    title_bbox = draw.textbbox((0, 0), title, font=title_font)
+    title_width = title_bbox[2] - title_bbox[0]
+    draw.text(((1200 - title_width) // 2, 120), title, fill='#7C3AED', font=title_font)
+    
+    # Draw student name (truncated if too long)
+    student_name = cert.get("student_name", "Student")
+    if len(student_name) > 25:
+        student_name = student_name[:22] + "..."
+    name_bbox = draw.textbbox((0, 0), student_name, font=subtitle_font)
+    name_width = name_bbox[2] - name_bbox[0]
+    draw.text(((1200 - name_width) // 2, 250), student_name, fill='#1E293B', font=subtitle_font)
+    
+    # Draw certificate type
+    cert_type = cert.get("certificate_type", "achievement").title()
+    type_text = f"Certificate of {cert_type}"
+    type_bbox = draw.textbbox((0, 0), type_text, font=body_font)
+    type_width = type_bbox[2] - type_bbox[0]
+    draw.text(((1200 - type_width) // 2, 350), type_text, fill='#64748B', font=body_font)
+    
+    # Draw course name (truncated)
+    course_name = cert.get("course_name", "TEC Program")
+    if len(course_name) > 40:
+        course_name = course_name[:37] + "..."
+    course_bbox = draw.textbbox((0, 0), course_name, font=body_font)
+    course_width = course_bbox[2] - course_bbox[0]
+    draw.text(((1200 - course_width) // 2, 430), course_name, fill='#7C3AED', font=body_font)
+    
+    # Draw footer
+    footer = "TEC Sri Lanka Worldwide | 42 Years of Excellence"
+    footer_bbox = draw.textbbox((0, 0), footer, font=body_font)
+    footer_width = footer_bbox[2] - footer_bbox[0]
+    draw.text(((1200 - footer_width) // 2, 530), footer, fill='#64748B', font=body_font)
+    
+    # Convert to bytes
+    img_byte_arr = BytesIO()
+    img.save(img_byte_arr, format='PNG', optimize=True)
+    img_byte_arr.seek(0)
+    
+    return StreamingResponse(img_byte_arr, media_type="image/png")
+
+@api_router.get("/certificates/share/{cert_number}")
+async def get_certificate_share_data(cert_number: str):
+    """Get certificate data for social sharing (POC - returns JSON)"""
+    
+    # Get certificate
+    cert = await db.certificates.find_one({"certificate_number": cert_number}, {"_id": 0})
+    
+    if not cert:
+        raise HTTPException(status_code=404, detail="Certificate not found")
+    
+    # Build OG tags
+    frontend_url = os.environ.get("FRONTEND_URL", "https://tecaikids.com")
+    api_url = os.environ.get("REACT_APP_BACKEND_URL", "http://localhost:8001")
+    
+    student_name = cert.get("student_name", "Student")
+    # Obfuscate last name for privacy
+    name_parts = student_name.split()
+    if len(name_parts) > 1:
+        display_name = f"{name_parts[0]} {name_parts[-1][0]}."
+    else:
+        display_name = name_parts[0]
+    
+    og_title = f"🎓 {display_name} earned a TEC Certificate!"
+    og_description = f"Certificate of {cert.get('certificate_type', 'achievement').title()} - {cert.get('course_name', 'TEC Program')}"
+    og_image = f"{api_url}/api/og/cert/{cert_number}.png"
+    
+    return {
+        "certificate": {
+            "number": cert_number,
+            "student_name": display_name,
+            "type": cert.get("certificate_type"),
+            "course": cert.get("course_name"),
+            "issued_date": cert.get("issued_date", cert.get("completion_date"))
+        },
+        "og_tags": {
+            "og:title": og_title,
+            "og:description": og_description,
+            "og:image": og_image,
+            "og:type": "website",
+            "og:url": f"{frontend_url}/certificates/share/{cert_number}",
+            "twitter:card": "summary_large_image",
+            "twitter:title": og_title,
+            "twitter:description": og_description,
+            "twitter:image": og_image
+        }
+    }
+
+# ============================================================================
+# DATABASE INDEXES (Run on startup)
+# ============================================================================
+
+async def create_indexes():
+    """Create database indexes for performance"""
+    try:
+        # Users indexes
+        await db.users.create_index("email", unique=True)
+        await db.users.create_index("referral_code", unique=True, sparse=True)
+        await db.users.create_index("student_index", unique=True, sparse=True)
+        
+        # Referral events indexes
+        await db.referral_events.create_index([("ref_code", 1), ("created_at", -1)])
+        await db.referral_events.create_index("event_type")
+        await db.referral_events.create_index("new_user_id", sparse=True)
+        
+        # Certificates indexes
+        await db.certificates.create_index("certificate_number", unique=True)
+        await db.certificates.create_index("student_id")
+        
+        # Attendance indexes
+        await db.attendance_records.create_index([("student_id", 1), ("date", -1)])
+        await db.live_classes.create_index("scheduled_time")
+        
+        # Magazine articles indexes
+        await db.magazine_articles.create_index([("age_group", 1), ("status", 1)])
+        await db.magazine_articles.create_index("created_at")
+        
+        logger.info("✓ Database indexes created successfully")
+    except Exception as e:
+        logger.error(f"Error creating indexes: {str(e)}")
+
 # Include router after all routes are defined
 app.include_router(api_router)
 
