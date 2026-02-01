@@ -951,6 +951,12 @@ const PublicLanding = () => {
           </div>
         </div>
       </footer>
+
+      {/* Free Trial Modal */}
+      <FreeTrialModal 
+        isOpen={showFreeTrialModal} 
+        onClose={() => setShowFreeTrialModal(false)} 
+      />
     </div>
   );
 };
