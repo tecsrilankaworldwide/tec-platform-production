@@ -38,6 +38,7 @@ import ArticleReviewDashboard from "./components/ArticleReviewDashboard";
 import Leaderboard from "./components/Leaderboard";
 import BatchShowcase from "./components/BatchShowcase";
 import ReferralSystem from "./components/ReferralSystem";
+import InviteAndEarn from "./components/InviteAndEarn";
 
 // Enrollment Success/Cancel Components
 const EnrollmentSuccess = () => {
