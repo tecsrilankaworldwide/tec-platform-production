@@ -52,7 +52,7 @@ async def test_referral_flow():
             print_error(f"Login failed: {login_response.text}")
             return False
         
-        token = login_response.json()["token"]
+        token = login_response.json()["access_token"]
         headers = {"Authorization": f"Bearer {token}"}
         
         # Generate referral code
@@ -168,7 +168,7 @@ async def test_certificate_social_sharing():
             print_error(f"Login failed: {login_response.text}")
             return False
         
-        token = login_response.json()["token"]
+        token = login_response.json()["access_token"]
         user_id = login_response.json()["user"]["id"]
         headers = {"Authorization": f"Bearer {token}"}
         
