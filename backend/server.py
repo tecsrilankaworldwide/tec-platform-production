@@ -31,6 +31,15 @@ from country_config import (
     COUNTRY_CONFIG
 )
 
+# Age-Appropriate Gamification
+from age_gamification import (
+    get_age_appropriate_content,
+    get_level_title,
+    get_age_appropriate_rewards,
+    get_daily_challenge,
+    get_encouragement
+)
+
 # AI Chat Service
 from ai_chat_service import ai_chat_service
 
@@ -6848,6 +6857,24 @@ async def get_country_pricing(country_code: str, age_group: str):
         "photo_alternative_recommended": should_hide_photo,
         "photo_message": photo_message
     }
+
+@api_router.get("/gamification/age-appropriate/{age_group}")
+async def get_age_gamification(age_group: str):
+    """Get age-appropriate gamification content"""
+    content = get_age_appropriate_content(age_group)
+    return content
+
+@api_router.get("/gamification/challenge/{age_group}")
+async def get_daily_age_challenge(age_group: str):
+    """Get daily challenge for specific age group"""
+    challenge = get_daily_challenge(age_group)
+    return {"challenge": challenge, "age_group": age_group}
+
+@api_router.get("/gamification/encouragement/{age_group}")
+async def get_age_encouragement(age_group: str):
+    """Get encouragement message for age group"""
+    message = get_encouragement(age_group)
+    return {"message": message, "age_group": age_group}
 
 # ============================================================================
 # FREE TRIAL / DEMO CLASS SYSTEM
