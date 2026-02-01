@@ -22,6 +22,15 @@ from io import BytesIO
 import qrcode
 import base64
 
+# Country Configuration
+from country_config import (
+    get_country_from_language,
+    get_pricing_for_country,
+    should_recommend_photo_alternative,
+    get_country_config,
+    COUNTRY_CONFIG
+)
+
 # AI Chat Service
 from ai_chat_service import ai_chat_service
 
