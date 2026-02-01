@@ -981,7 +981,7 @@ const BatchShowcaseWrapper = () => {
 const ReferralSystemWrapper = () => {
   return (
     <AppLayout>
-      <ReferralSystem />
+      <InviteAndEarn />
     </AppLayout>
   );
 };
