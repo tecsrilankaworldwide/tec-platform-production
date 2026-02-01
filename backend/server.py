@@ -6799,6 +6799,167 @@ async def get_scheduled_reminders(current_user: User = Depends(get_current_teach
     }
 
 # ============================================================================
+# FREE TRIAL / DEMO CLASS SYSTEM
+# ============================================================================
+
+class TrialEnrollmentRequest(BaseModel):
+    age_group: AgeGroup
+    full_name: str
+    email: str
+    parent_phone: Optional[str] = None
+    parent_name: Optional[str] = None
+
+class TrialStatusResponse(BaseModel):
+    can_start_trial: bool
+    trial_used: bool
+    is_trial_active: bool
+    trial_started_at: Optional[datetime] = None
+    message: str
+
+@api_router.post("/trial/enroll")
+async def enroll_in_free_trial(trial_request: TrialEnrollmentRequest):
+    """
+    Enroll in a free trial class - no payment required
+    Creates a new student account with trial access
+    """
+    # Check if email already exists
+    existing_user = await db.users.find_one({"email": trial_request.email})
+    
+    if existing_user:
+        # Check if they already used trial
+        if existing_user.get("trial_used", False):
+            raise HTTPException(
+                status_code=400, 
+                detail="This email has already used the free trial. Please subscribe to continue learning!"
+            )
+        
+        # If trial not used, activate it
+        if not existing_user.get("is_trial_active", False):
+            await db.users.update_one(
+                {"id": existing_user["id"]},
+                {
+                    "$set": {
+                        "trial_used": True,
+                        "is_trial_active": True,
+                        "trial_started_at": datetime.now(timezone.utc)
+                    }
+                }
+            )
+        
+        return {
+            "message": "Free trial activated! Check your email for login details.",
+            "user_id": existing_user["id"],
+            "trial_active": True
+        }
+    
+    # Create new trial user
+    import random
+    import string
+    temp_password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    hashed_password = get_password_hash(temp_password)
+    
+    # Determine learning level from age group
+    learning_level_map = {
+        AgeGroup.FOUNDATION: LearningLevel.FOUNDATION,
+        AgeGroup.EXPLORERS: LearningLevel.EXPLORERS,
+        AgeGroup.SMART: LearningLevel.SMART,
+        AgeGroup.TEENS: LearningLevel.TEENS,
+        AgeGroup.LEADERS: LearningLevel.LEADERS
+    }
+    
+    trial_user = {
+        "id": str(uuid.uuid4()),
+        "email": trial_request.email,
+        "full_name": trial_request.full_name,
+        "role": "student",
+        "age_group": trial_request.age_group.value,
+        "parent_phone": trial_request.parent_phone,
+        "parent_name": trial_request.parent_name,
+        "learning_level": learning_level_map.get(trial_request.age_group, LearningLevel.FOUNDATION).value,
+        "created_at": datetime.now(timezone.utc),
+        "is_active": True,
+        "trial_used": True,
+        "is_trial_active": True,
+        "trial_started_at": datetime.now(timezone.utc),
+        "hashed_password": hashed_password,
+        "xp": 0,
+        "skill_progress": {},
+        "total_watch_time": 0
+    }
+    
+    await db.users.insert_one(trial_user)
+    
+    # Log activity
+    await log_activity(
+        user_id=trial_user["id"],
+        activity_type=ActivityType.COURSE_ENROLLMENT,
+        details={"trial": True, "age_group": trial_request.age_group.value},
+        request=None
+    )
+    
+    # TODO: Send welcome email with login credentials
+    # For now, return credentials (in production, email them)
+    
+    return {
+        "message": "Free trial account created successfully!",
+        "user_id": trial_user["id"],
+        "email": trial_request.email,
+        "temporary_password": temp_password,
+        "trial_active": True,
+        "note": "Save your password! You can change it after logging in."
+    }
+
+@api_router.get("/trial/status", response_model=TrialStatusResponse)
+async def get_trial_status(current_user: User = Depends(get_current_user)):
+    """Get trial status for current user"""
+    
+    can_start = not current_user.trial_used
+    
+    return {
+        "can_start_trial": can_start,
+        "trial_used": current_user.trial_used,
+        "is_trial_active": current_user.is_trial_active,
+        "trial_started_at": current_user.trial_started_at,
+        "message": "Trial available!" if can_start else "Trial already used. Subscribe to continue!"
+    }
+
+@api_router.post("/trial/convert-to-paid")
+async def convert_trial_to_paid(
+    subscription_data: dict,
+    current_user: User = Depends(get_current_user)
+):
+    """Convert trial user to paid subscription"""
+    
+    if not current_user.is_trial_active:
+        raise HTTPException(status_code=400, detail="No active trial to convert")
+    
+    subscription_type = subscription_data.get("subscription_type", "monthly")
+    
+    # Deactivate trial
+    await db.users.update_one(
+        {"id": current_user.id},
+        {
+            "$set": {
+                "is_trial_active": False,
+                "subscription_type": subscription_type,
+                "subscription_expires": datetime.now(timezone.utc) + timedelta(days=30)
+            }
+        }
+    )
+    
+    # Award conversion bonus XP
+    await db.users.update_one(
+        {"id": current_user.id},
+        {"$inc": {"xp": 50}}  # Bonus for converting from trial
+    )
+    
+    return {
+        "message": "Successfully converted to paid subscription!",
+        "subscription_type": subscription_type,
+        "bonus_xp": 50
+    }
+
+# ============================================================================
 # REFERRAL SYSTEM POC ENDPOINTS
 # ============================================================================
 
