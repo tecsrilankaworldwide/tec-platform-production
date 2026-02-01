@@ -40,6 +40,13 @@ from age_gamification import (
     get_encouragement
 )
 
+# Weekly Inspirational Quotes
+from weekly_quotes import (
+    get_quote_of_the_week,
+    get_all_quotes,
+    get_quote_by_week
+)
+
 # AI Chat Service
 from ai_chat_service import ai_chat_service
 
@@ -6875,6 +6882,28 @@ async def get_age_encouragement(age_group: str):
     """Get encouragement message for age group"""
     message = get_encouragement(age_group)
     return {"message": message, "age_group": age_group}
+
+# ============================================================================
+# WEEKLY INSPIRATIONAL QUOTES
+# ============================================================================
+
+@api_router.get("/quotes/weekly")
+async def get_weekly_quote():
+    """Get the inspirational quote for current week"""
+    quote = get_quote_of_the_week()
+    return quote
+
+@api_router.get("/quotes/all")
+async def get_all_weekly_quotes():
+    """Get all 12 quotes (for admin preview)"""
+    quotes = get_all_quotes()
+    return {"quotes": quotes, "total": len(quotes)}
+
+@api_router.get("/quotes/week/{week_number}")
+async def get_quote_for_week(week_number: int):
+    """Get quote for specific week (1-12)"""
+    quote = get_quote_by_week(week_number)
+    return quote
 
 # ============================================================================
 # FREE TRIAL / DEMO CLASS SYSTEM
