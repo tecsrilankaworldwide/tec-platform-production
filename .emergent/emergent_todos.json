@@ -1,46 +1,30 @@
 [
   {
-    "content": "Phase A: Deployment - Prepare environment for production",
-    "status": "completed"
-  },
-  {
-    "content": "Phase A: Free Trial - Add backend trial tracking",
-    "status": "completed"
-  },
-  {
-    "content": "Phase A: Free Trial - Create trial enrollment endpoint",
-    "status": "completed"
-  },
-  {
-    "content": "Phase A: Free Trial - Update frontend with trial CTA",
-    "status": "completed"
-  },
-  {
-    "content": "Phase A: Test Free Trial flow",
-    "status": "completed"
-  },
-  {
-    "content": "Design Enhancement: Create soft pastel theme system",
-    "status": "completed"
-  },
-  {
-    "content": "Design Enhancement: Update InviteAndEarn with pastel design",
-    "status": "completed"
-  },
-  {
-    "content": "Design Enhancement: Update other pages with pastel colors",
+    "content": "Phase B: Zoom Integration - Get integration playbook",
     "status": "in_progress"
   },
   {
-    "content": "Phase B: Zoom Integration - Get integration playbook",
+    "content": "Phase B: Zoom Integration - Implement backend (create/join meetings)",
     "status": "pending"
   },
   {
-    "content": "Phase B: Zoom Integration - Implement backend",
+    "content": "Phase B: Zoom Integration - Implement frontend (meeting UI)",
     "status": "pending"
   },
   {
-    "content": "Phase B: Zoom Integration - Implement frontend",
+    "content": "Phase B: Zoom Integration - Update class scheduler with Zoom",
+    "status": "pending"
+  },
+  {
+    "content": "Phase B: Zoom Integration - Test end-to-end",
+    "status": "pending"
+  },
+  {
+    "content": "Final: Comprehensive testing before deployment",
+    "status": "pending"
+  },
+  {
+    "content": "Final: Deploy to production",
     "status": "pending"
   }
 ]
