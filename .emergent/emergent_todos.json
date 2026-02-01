@@ -1,23 +1,23 @@
 [
   {
     "content": "Phase A: Deployment - Prepare environment for production",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase A: Free Trial - Add backend trial tracking",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase A: Free Trial - Create trial enrollment endpoint",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase A: Free Trial - Update frontend with trial CTA",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase A: Test Free Trial flow",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase B: Zoom Integration - Get integration playbook",
