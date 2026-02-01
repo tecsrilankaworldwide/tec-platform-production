@@ -990,7 +990,9 @@ const BatchShowcaseWrapper = () => {
 const ReferralSystemWrapper = () => {
   return (
     <AppLayout>
-      <InviteAndEarn />
+      <Suspense fallback={<LoadingFallback />}>
+        <InviteAndEarn />
+      </Suspense>
     </AppLayout>
   );
 };
