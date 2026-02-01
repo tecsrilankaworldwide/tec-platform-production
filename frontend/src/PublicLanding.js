@@ -241,6 +241,14 @@ const PublicLanding = () => {
             </p>
             <div className="flex justify-center space-x-4 flex-wrap gap-4">
               <button 
+                onClick={() => setShowFreeTrialModal(true)}
+                className="bg-green-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-600 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
+                data-testid="free-trial-hero-btn"
+              >
+                <span className="text-2xl">🎁</span>
+                Try 1 FREE Class!
+              </button>
+              <button 
                 onClick={() => document.getElementById('programs').scrollIntoView({ behavior: 'smooth' })}
                 className="bg-yellow-400 text-purple-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105"
                 data-testid="start-excellence-btn"
