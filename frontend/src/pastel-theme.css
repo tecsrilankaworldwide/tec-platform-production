@@ -1,9 +1,10 @@
 /* ============================================================================
    TECAIKIDS - SOFT PASTEL DESIGN SYSTEM FOR KIDS & TEENS
+   UPDATED: High Contrast Text for Easy Reading
    ============================================================================ */
 
 :root {
-  /* Soft Pastel Primary Colors */
+  /* Soft Pastel Backgrounds (keep these soft) */
   --pastel-lavender: #E6E6FA;
   --pastel-purple: #D4B5FF;
   --pastel-pink: #FFD6E8;
@@ -13,44 +14,61 @@
   --pastel-coral: #FFD4D4;
   --pastel-lemon: #FFF9D4;
   
-  /* Vibrant Accents (for CTAs) */
-  --vibrant-purple: #A78BFA;
-  --vibrant-pink: #F472B6;
-  --vibrant-mint: #6EE7B7;
-  --vibrant-sky: #7DD3FC;
-  --vibrant-coral: #FCA5A5;
+  /* SHARP Text Colors for Readability */
+  --text-primary: #1E293B;      /* Very dark slate - main text */
+  --text-secondary: #334155;    /* Dark slate - secondary text */
+  --text-heading: #0F172A;      /* Almost black - headings */
+  --text-muted: #64748B;        /* Medium gray - less important */
+  --text-light: #94A3B8;        /* Light gray - hints */
   
-  /* Gradients */
+  /* Vibrant Accents (for CTAs and important elements) */
+  --vibrant-purple: #7C3AED;    /* Deep purple - readable */
+  --vibrant-pink: #DB2777;      /* Deep pink - readable */
+  --vibrant-mint: #059669;      /* Deep mint/green */
+  --vibrant-sky: #0284C7;       /* Deep blue */
+  --vibrant-coral: #DC2626;     /* Deep red */
+  --vibrant-orange: #EA580C;    /* Deep orange */
+  
+  /* Gradients - Vibrant for CTAs */
+  --gradient-cta: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%);
+  --gradient-success: linear-gradient(135deg, #059669 0%, #0284C7 100%);
+  --gradient-warning: linear-gradient(135deg, #EA580C 0%, #F59E0B 100%);
+  
+  /* Background Gradients - Soft */
   --gradient-purple-pink: linear-gradient(135deg, #E6E6FA 0%, #FFD6E8 100%);
   --gradient-mint-sky: linear-gradient(135deg, #D4F4E7 0%, #D4E9FF 100%);
   --gradient-peach-coral: linear-gradient(135deg, #FFE5D4 0%, #FFD4D4 100%);
   --gradient-lavender-mint: linear-gradient(135deg, #E6E6FA 0%, #D4F4E7 100%);
   
   /* Soft Neutrals */
-  --soft-white: #FEFEFE;
-  --cream: #FFF9F5;
-  --soft-gray: #F5F5F7;
-  --medium-gray: #D1D5DB;
-  --text-dark: #4A5568;
-  --text-medium: #718096;
-  --text-light: #A0AEC0;
+  --soft-white: #FFFFFF;
+  --cream: #FFFBF5;
+  --soft-gray: #F8FAFC;
+  --medium-gray: #E2E8F0;
   
-  /* Semantic Colors */
-  --success-soft: #D4F4E7;
-  --success: #6EE7B7;
-  --warning-soft: #FFF9D4;
-  --warning: #FCD34D;
-  --error-soft: #FFD4D4;
-  --error: #FCA5A5;
-  --info-soft: #D4E9FF;
-  --info: #7DD3FC;
+  /* Semantic Colors - High Contrast */
+  --success-bg: #D4F4E7;
+  --success-text: #065F46;
+  --success-border: #059669;
   
-  /* Shadows - Soft and Gentle */
-  --shadow-xs: 0 1px 2px rgba(165, 137, 250, 0.05);
-  --shadow-sm: 0 4px 6px rgba(165, 137, 250, 0.08);
-  --shadow-md: 0 10px 15px rgba(165, 137, 250, 0.12);
-  --shadow-lg: 0 20px 25px rgba(165, 137, 250, 0.15);
-  --shadow-xl: 0 25px 50px rgba(165, 137, 250, 0.2);
+  --warning-bg: #FFF9D4;
+  --warning-text: #92400E;
+  --warning-border: #F59E0B;
+  
+  --error-bg: #FFD4D4;
+  --error-text: #991B1B;
+  --error-border: #DC2626;
+  
+  --info-bg: #D4E9FF;
+  --info-text: #1E40AF;
+  --info-border: #0284C7;
+  
+  /* Shadows - Slightly Stronger */
+  --shadow-xs: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-sm: 0 4px 6px rgba(15, 23, 42, 0.1);
+  --shadow-md: 0 10px 15px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 20px 25px rgba(15, 23, 42, 0.15);
+  --shadow-xl: 0 25px 50px rgba(15, 23, 42, 0.2);
   
   /* Border Radius - Friendly and Rounded */
   --radius-sm: 12px;
@@ -68,12 +86,12 @@
   --space-2xl: 48px;
   
   /* Typography */
-  --font-primary: 'Nunito', 'Comic Sans MS', sans-serif;
+  --font-primary: 'Nunito', 'Segoe UI', sans-serif;
   --font-secondary: 'Outfit', 'Helvetica Neue', sans-serif;
 }
 
 /* ============================================================================
-   GLOBAL STYLES - SOFT & FRIENDLY
+   GLOBAL STYLES - SOFT BACKGROUNDS + SHARP TEXT
    ============================================================================ */
 
 * {
@@ -83,103 +101,73 @@
 body {
   font-family: var(--font-secondary);
   background: var(--cream);
-  color: var(--text-dark);
+  color: var(--text-primary);  /* Sharp, readable text */
   line-height: 1.6;
   overflow-x: hidden;
+  font-weight: 500;  /* Slightly bolder for readability */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
+  font-weight: 800;  /* Extra bold for headings */
+  color: var(--text-heading);  /* Almost black */
+  line-height: 1.2;
+  letter-spacing: -0.02em;  /* Tighter spacing for impact */
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.875rem; }
+h4 { font-size: 1.5rem; }
+
+p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Strong emphasis */
+strong, b {
   font-weight: 700;
-  color: var(--text-dark);
-  line-height: 1.3;
+  color: var(--text-heading);
 }
 
 /* ============================================================================
-   UTILITY CLASSES - PASTEL BACKGROUNDS
-   ============================================================================ */
-
-.bg-pastel-gradient-1 {
-  background: var(--gradient-purple-pink);
-}
-
-.bg-pastel-gradient-2 {
-  background: var(--gradient-mint-sky);
-}
-
-.bg-pastel-gradient-3 {
-  background: var(--gradient-peach-coral);
-}
-
-.bg-pastel-gradient-4 {
-  background: var(--gradient-lavender-mint);
-}
-
-.bg-pastel-lavender { background: var(--pastel-lavender); }
-.bg-pastel-purple { background: var(--pastel-purple); }
-.bg-pastel-pink { background: var(--pastel-pink); }
-.bg-pastel-peach { background: var(--pastel-peach); }
-.bg-pastel-mint { background: var(--pastel-mint); }
-.bg-pastel-sky { background: var(--pastel-sky); }
-.bg-pastel-coral { background: var(--pastel-coral); }
-
-/* ============================================================================
-   CARD STYLES - SOFT & ELEVATED
-   ============================================================================ */
-
-.pastel-card {
-  background: var(--soft-white);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  box-shadow: var(--shadow-md);
-  border: 2px solid rgba(165, 137, 250, 0.1);
-  transition: all 0.3s ease;
-}
-
-.pastel-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
-}
-
-.pastel-card-sm {
-  background: var(--soft-white);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
-  box-shadow: var(--shadow-sm);
-  border: 2px solid rgba(165, 137, 250, 0.08);
-}
-
-/* ============================================================================
-   BUTTON STYLES - PLAYFUL & INVITING
+   BUTTON STYLES - HIGH CONTRAST
    ============================================================================ */
 
 .btn-pastel-primary {
-  background: linear-gradient(135deg, var(--vibrant-purple), var(--vibrant-pink));
+  background: var(--gradient-cta);  /* Vibrant gradient */
   color: white;
-  padding: 14px 32px;
+  padding: 16px 36px;
   border-radius: var(--radius-full);
   border: none;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 800;
+  font-size: 17px;
   cursor: pointer;
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   font-family: var(--font-primary);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);  /* Text shadow for readability */
 }
 
 .btn-pastel-primary:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.btn-pastel-primary:active {
+  transform: translateY(-1px) scale(1.01);
 }
 
 .btn-pastel-secondary {
   background: var(--soft-white);
-  color: var(--vibrant-purple);
-  padding: 14px 32px;
+  color: var(--vibrant-purple);  /* Deep purple text */
+  padding: 16px 36px;
   border-radius: var(--radius-full);
-  border: 3px solid var(--pastel-purple);
-  font-weight: 700;
-  font-size: 16px;
+  border: 3px solid var(--vibrant-purple);  /* Vibrant border */
+  font-weight: 800;
+  font-size: 17px;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
@@ -190,52 +178,66 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--pastel-lavender);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  border-color: var(--vibrant-purple);
 }
 
 .btn-pastel-success {
-  background: linear-gradient(135deg, var(--vibrant-mint), var(--vibrant-sky));
+  background: var(--gradient-success);  /* Vibrant green-blue */
   color: white;
-  padding: 14px 32px;
+  padding: 16px 36px;
   border-radius: var(--radius-full);
   border: none;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   font-family: var(--font-primary);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-pastel-success:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px) scale(1.02);
 }
 
 /* ============================================================================
-   INPUT STYLES - SOFT & FRIENDLY
+   INPUT STYLES - HIGH CONTRAST BORDERS
    ============================================================================ */
 
 .pastel-input {
   width: 100%;
-  padding: 14px 20px;
-  border: 3px solid var(--pastel-purple);
+  padding: 16px 20px;
+  border: 3px solid var(--vibrant-purple);  /* Vibrant border */
   border-radius: var(--radius-md);
   background: var(--soft-white);
-  color: var(--text-dark);
+  color: var(--text-primary);  /* Dark text */
   font-size: 16px;
+  font-weight: 600;
   font-family: var(--font-secondary);
   transition: all 0.3s ease;
+}
+
+.pastel-input::placeholder {
+  color: var(--text-light);
+  font-weight: 500;
 }
 
 .pastel-input:focus {
   outline: none;
   border-color: var(--vibrant-purple);
-  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.1);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
   background: white;
 }
 
 .pastel-select {
   width: 100%;
-  padding: 14px 20px;
-  border: 3px solid var(--pastel-purple);
+  padding: 16px 20px;
+  border: 3px solid var(--vibrant-purple);
   border-radius: var(--radius-md);
   background: var(--soft-white);
-  color: var(--text-dark);
+  color: var(--text-primary);  /* Dark text */
   font-size: 16px;
+  font-weight: 600;
   font-family: var(--font-secondary);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -244,116 +246,75 @@ h1, h2, h3, h4, h5, h6 {
 .pastel-select:focus {
   outline: none;
   border-color: var(--vibrant-purple);
-  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.1);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
 }
 
 /* ============================================================================
-   BADGE STYLES - CUTE & COLORFUL
+   CARD STYLES - SOFT BACKGROUNDS + SHARP TEXT
+   ============================================================================ */
+
+.pastel-card {
+  background: var(--soft-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  border: 3px solid rgba(124, 58, 237, 0.15);
+  transition: all 0.3s ease;
+}
+
+.pastel-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: rgba(124, 58, 237, 0.25);
+}
+
+.pastel-card h3,
+.pastel-card h4 {
+  color: var(--text-heading);  /* Almost black */
+}
+
+.pastel-card p {
+  color: var(--text-secondary);  /* Dark gray */
+}
+
+/* ============================================================================
+   BADGE STYLES - HIGH CONTRAST
    ============================================================================ */
 
 .pastel-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
+  gap: 8px;
+  padding: 10px 20px;
   border-radius: var(--radius-full);
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 15px;
   font-family: var(--font-primary);
+  border: 2px solid transparent;
 }
 
 .pastel-badge-purple {
   background: var(--pastel-purple);
-  color: #6B46C1;
+  color: #5B21B6;  /* Deep purple text */
+  border-color: #7C3AED;
 }
 
 .pastel-badge-pink {
   background: var(--pastel-pink);
-  color: #BE185D;
+  color: #9F1239;  /* Deep pink text */
+  border-color: #DB2777;
 }
 
 .pastel-badge-mint {
   background: var(--pastel-mint);
-  color: #047857;
+  color: #065F46;  /* Deep green text */
+  border-color: #059669;
 }
 
 .pastel-badge-sky {
   background: var(--pastel-sky);
-  color: #0369A1;
-}
-
-/* ============================================================================
-   SECTION SPACING - BREATHING ROOM
-   ============================================================================ */
-
-.pastel-section {
-  padding: var(--space-2xl) var(--space-lg);
-  margin: var(--space-xl) 0;
-}
-
-.pastel-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
-}
-
-/* ============================================================================
-   DECORATIVE ELEMENTS - PLAYFUL TOUCHES
-   ============================================================================ */
-
-.floating-shapes {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.shape {
-  position: absolute;
-  opacity: 0.15;
-  animation: float 20s infinite ease-in-out;
-}
-
-.shape-circle {
-  border-radius: 50%;
-}
-
-.shape-1 {
-  width: 100px;
-  height: 100px;
-  background: var(--pastel-purple);
-  top: 10%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.shape-2 {
-  width: 80px;
-  height: 80px;
-  background: var(--pastel-pink);
-  top: 50%;
-  right: 15%;
-  animation-delay: 5s;
-}
-
-.shape-3 {
-  width: 60px;
-  height: 60px;
-  background: var(--pastel-mint);
-  bottom: 20%;
-  left: 20%;
-  animation-delay: 10s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-30px) rotate(180deg);
-  }
+  color: #075985;  /* Deep blue text */
+  border-color: #0284C7;
 }
 
 /* ============================================================================
@@ -397,6 +358,79 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================================================
+   ACCESSIBILITY - HIGH CONTRAST FOCUS
+   ============================================================================ */
+
+*:focus-visible {
+  outline: 4px solid var(--vibrant-purple);
+  outline-offset: 3px;
+}
+
+/* ============================================================================
+   SCROLLBAR - VISIBLE & FRIENDLY
+   ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pastel-lavender);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vibrant-purple);  /* Vibrant purple for visibility */
+  border-radius: var(--radius-full);
+  border: 3px solid var(--pastel-lavender);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6D28D9;  /* Even darker on hover */
+}
+
+/* ============================================================================
+   UTILITY CLASSES - HIGH CONTRAST TEXT
+   ============================================================================ */
+
+.text-sharp-primary {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.text-sharp-heading {
+  color: var(--text-heading);
+  font-weight: 800;
+}
+
+.text-vibrant-purple {
+  color: var(--vibrant-purple);
+  font-weight: 700;
+}
+
+.text-vibrant-pink {
+  color: var(--vibrant-pink);
+  font-weight: 700;
+}
+
+/* ============================================================================
+   LINKS - READABLE & ACCESSIBLE
+   ============================================================================ */
+
+a {
+  color: var(--vibrant-purple);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #6D28D9;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ============================================================================
    RESPONSIVE - MOBILE FRIENDLY
    ============================================================================ */
 
@@ -406,44 +440,14 @@ h1, h2, h3, h4, h5, h6 {
     --space-2xl: 32px;
   }
   
-  .pastel-section {
-    padding: var(--space-xl) var(--space-md);
-  }
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.5rem; }
   
   .btn-pastel-primary,
   .btn-pastel-secondary,
   .btn-pastel-success {
-    padding: 12px 24px;
-    font-size: 15px;
+    padding: 14px 28px;
+    font-size: 16px;
   }
-}
-
-/* ============================================================================
-   ACCESSIBILITY - FOCUS STATES
-   ============================================================================ */
-
-*:focus-visible {
-  outline: 3px solid var(--vibrant-purple);
-  outline-offset: 2px;
-}
-
-/* ============================================================================
-   SCROLLBAR - SOFT & SUBTLE
-   ============================================================================ */
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--pastel-lavender);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--pastel-purple);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--vibrant-purple);
 }
