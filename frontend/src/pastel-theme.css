@@ -1,0 +1,449 @@
+/* ============================================================================
+   TECAIKIDS - SOFT PASTEL DESIGN SYSTEM FOR KIDS & TEENS
+   ============================================================================ */
+
+:root {
+  /* Soft Pastel Primary Colors */
+  --pastel-lavender: #E6E6FA;
+  --pastel-purple: #D4B5FF;
+  --pastel-pink: #FFD6E8;
+  --pastel-peach: #FFE5D4;
+  --pastel-mint: #D4F4E7;
+  --pastel-sky: #D4E9FF;
+  --pastel-coral: #FFD4D4;
+  --pastel-lemon: #FFF9D4;
+  
+  /* Vibrant Accents (for CTAs) */
+  --vibrant-purple: #A78BFA;
+  --vibrant-pink: #F472B6;
+  --vibrant-mint: #6EE7B7;
+  --vibrant-sky: #7DD3FC;
+  --vibrant-coral: #FCA5A5;
+  
+  /* Gradients */
+  --gradient-purple-pink: linear-gradient(135deg, #E6E6FA 0%, #FFD6E8 100%);
+  --gradient-mint-sky: linear-gradient(135deg, #D4F4E7 0%, #D4E9FF 100%);
+  --gradient-peach-coral: linear-gradient(135deg, #FFE5D4 0%, #FFD4D4 100%);
+  --gradient-lavender-mint: linear-gradient(135deg, #E6E6FA 0%, #D4F4E7 100%);
+  
+  /* Soft Neutrals */
+  --soft-white: #FEFEFE;
+  --cream: #FFF9F5;
+  --soft-gray: #F5F5F7;
+  --medium-gray: #D1D5DB;
+  --text-dark: #4A5568;
+  --text-medium: #718096;
+  --text-light: #A0AEC0;
+  
+  /* Semantic Colors */
+  --success-soft: #D4F4E7;
+  --success: #6EE7B7;
+  --warning-soft: #FFF9D4;
+  --warning: #FCD34D;
+  --error-soft: #FFD4D4;
+  --error: #FCA5A5;
+  --info-soft: #D4E9FF;
+  --info: #7DD3FC;
+  
+  /* Shadows - Soft and Gentle */
+  --shadow-xs: 0 1px 2px rgba(165, 137, 250, 0.05);
+  --shadow-sm: 0 4px 6px rgba(165, 137, 250, 0.08);
+  --shadow-md: 0 10px 15px rgba(165, 137, 250, 0.12);
+  --shadow-lg: 0 20px 25px rgba(165, 137, 250, 0.15);
+  --shadow-xl: 0 25px 50px rgba(165, 137, 250, 0.2);
+  
+  /* Border Radius - Friendly and Rounded */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+  
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  
+  /* Typography */
+  --font-primary: 'Nunito', 'Comic Sans MS', sans-serif;
+  --font-secondary: 'Outfit', 'Helvetica Neue', sans-serif;
+}
+
+/* ============================================================================
+   GLOBAL STYLES - SOFT & FRIENDLY
+   ============================================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-secondary);
+  background: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+
+/* ============================================================================
+   UTILITY CLASSES - PASTEL BACKGROUNDS
+   ============================================================================ */
+
+.bg-pastel-gradient-1 {
+  background: var(--gradient-purple-pink);
+}
+
+.bg-pastel-gradient-2 {
+  background: var(--gradient-mint-sky);
+}
+
+.bg-pastel-gradient-3 {
+  background: var(--gradient-peach-coral);
+}
+
+.bg-pastel-gradient-4 {
+  background: var(--gradient-lavender-mint);
+}
+
+.bg-pastel-lavender { background: var(--pastel-lavender); }
+.bg-pastel-purple { background: var(--pastel-purple); }
+.bg-pastel-pink { background: var(--pastel-pink); }
+.bg-pastel-peach { background: var(--pastel-peach); }
+.bg-pastel-mint { background: var(--pastel-mint); }
+.bg-pastel-sky { background: var(--pastel-sky); }
+.bg-pastel-coral { background: var(--pastel-coral); }
+
+/* ============================================================================
+   CARD STYLES - SOFT & ELEVATED
+   ============================================================================ */
+
+.pastel-card {
+  background: var(--soft-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  border: 2px solid rgba(165, 137, 250, 0.1);
+  transition: all 0.3s ease;
+}
+
+.pastel-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.pastel-card-sm {
+  background: var(--soft-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid rgba(165, 137, 250, 0.08);
+}
+
+/* ============================================================================
+   BUTTON STYLES - PLAYFUL & INVITING
+   ============================================================================ */
+
+.btn-pastel-primary {
+  background: linear-gradient(135deg, var(--vibrant-purple), var(--vibrant-pink));
+  color: white;
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  font-family: var(--font-primary);
+}
+
+.btn-pastel-primary:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-pastel-secondary {
+  background: var(--soft-white);
+  color: var(--vibrant-purple);
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  border: 3px solid var(--pastel-purple);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  font-family: var(--font-primary);
+}
+
+.btn-pastel-secondary:hover {
+  background: var(--pastel-lavender);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-pastel-success {
+  background: linear-gradient(135deg, var(--vibrant-mint), var(--vibrant-sky));
+  color: white;
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  font-family: var(--font-primary);
+}
+
+/* ============================================================================
+   INPUT STYLES - SOFT & FRIENDLY
+   ============================================================================ */
+
+.pastel-input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 3px solid var(--pastel-purple);
+  border-radius: var(--radius-md);
+  background: var(--soft-white);
+  color: var(--text-dark);
+  font-size: 16px;
+  font-family: var(--font-secondary);
+  transition: all 0.3s ease;
+}
+
+.pastel-input:focus {
+  outline: none;
+  border-color: var(--vibrant-purple);
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.1);
+  background: white;
+}
+
+.pastel-select {
+  width: 100%;
+  padding: 14px 20px;
+  border: 3px solid var(--pastel-purple);
+  border-radius: var(--radius-md);
+  background: var(--soft-white);
+  color: var(--text-dark);
+  font-size: 16px;
+  font-family: var(--font-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pastel-select:focus {
+  outline: none;
+  border-color: var(--vibrant-purple);
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.1);
+}
+
+/* ============================================================================
+   BADGE STYLES - CUTE & COLORFUL
+   ============================================================================ */
+
+.pastel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 14px;
+  font-family: var(--font-primary);
+}
+
+.pastel-badge-purple {
+  background: var(--pastel-purple);
+  color: #6B46C1;
+}
+
+.pastel-badge-pink {
+  background: var(--pastel-pink);
+  color: #BE185D;
+}
+
+.pastel-badge-mint {
+  background: var(--pastel-mint);
+  color: #047857;
+}
+
+.pastel-badge-sky {
+  background: var(--pastel-sky);
+  color: #0369A1;
+}
+
+/* ============================================================================
+   SECTION SPACING - BREATHING ROOM
+   ============================================================================ */
+
+.pastel-section {
+  padding: var(--space-2xl) var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.pastel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* ============================================================================
+   DECORATIVE ELEMENTS - PLAYFUL TOUCHES
+   ============================================================================ */
+
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.15;
+  animation: float 20s infinite ease-in-out;
+}
+
+.shape-circle {
+  border-radius: 50%;
+}
+
+.shape-1 {
+  width: 100px;
+  height: 100px;
+  background: var(--pastel-purple);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 80px;
+  height: 80px;
+  background: var(--pastel-pink);
+  top: 50%;
+  right: 15%;
+  animation-delay: 5s;
+}
+
+.shape-3 {
+  width: 60px;
+  height: 60px;
+  background: var(--pastel-mint);
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 10s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+}
+
+/* ============================================================================
+   ANIMATIONS - SMOOTH & DELIGHTFUL
+   ============================================================================ */
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bounce-in {
+  animation: bounceIn 0.8s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE - MOBILE FRIENDLY
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --space-xl: 24px;
+    --space-2xl: 32px;
+  }
+  
+  .pastel-section {
+    padding: var(--space-xl) var(--space-md);
+  }
+  
+  .btn-pastel-primary,
+  .btn-pastel-secondary,
+  .btn-pastel-success {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* ============================================================================
+   ACCESSIBILITY - FOCUS STATES
+   ============================================================================ */
+
+*:focus-visible {
+  outline: 3px solid var(--vibrant-purple);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   SCROLLBAR - SOFT & SUBTLE
+   ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pastel-lavender);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pastel-purple);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vibrant-purple);
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
+import "./pastel-theme.css"; // Soft pastel design system for kids & teens
 import PublicLanding from "./PublicLanding";
 import { LanguageProvider } from "./LanguageContext";
 import ShareModal from "./components/ShareModal";
