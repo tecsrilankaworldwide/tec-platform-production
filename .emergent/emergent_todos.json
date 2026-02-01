@@ -1,27 +1,11 @@
 [
   {
-    "content": "Phase 1: POC - Create referral tracking endpoints (code generation, click tracking, conversion)",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 1: POC - Create certificate OG image generation endpoint",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 1: POC - Add database indexes for performance",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 1: POC - Create and run test_core.py to verify POC flows",
-    "status": "completed"
-  },
-  {
     "content": "Phase 2: Backend - Implement full referral system with stats and rewards",
     "status": "in_progress"
   },
   {
     "content": "Phase 2: Backend - Create public certificate share page with OG tags",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 2: Backend - Apply performance optimizations (indexes, caching, projections)",
