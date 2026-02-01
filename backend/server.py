@@ -6808,6 +6808,48 @@ async def get_scheduled_reminders(current_user: User = Depends(get_current_teach
     }
 
 # ============================================================================
+# COUNTRY & LOCALIZATION ENDPOINTS
+# ============================================================================
+
+@api_router.get("/countries")
+async def get_countries():
+    """Get list of supported countries with configuration"""
+    countries_list = []
+    
+    for key, config in COUNTRY_CONFIG.items():
+        countries_list.append({
+            "key": key,
+            "code": config["code"],
+            "name": config["name"],
+            "currency": config["currency"],
+            "currency_symbol": config["currency_symbol"],
+            "languages": config["languages"],
+            "default_language": config["default_language"],
+            "phone_prefix": config["phone_prefix"],
+            "photo_policy": config["photo_policy"]
+        })
+    
+    return {"countries": countries_list}
+
+@api_router.get("/pricing/{country_code}/{age_group}")
+async def get_country_pricing(country_code: str, age_group: str):
+    """Get pricing for a specific country and age group"""
+    
+    monthly = get_pricing_for_country(age_group, country_code, "monthly")
+    quarterly = get_pricing_for_country(age_group, country_code, "quarterly")
+    
+    should_hide_photo, photo_message = should_recommend_photo_alternative(country_code)
+    
+    return {
+        "country_code": country_code,
+        "age_group": age_group,
+        "monthly": monthly,
+        "quarterly": quarterly,
+        "photo_alternative_recommended": should_hide_photo,
+        "photo_message": photo_message
+    }
+
+# ============================================================================
 # FREE TRIAL / DEMO CLASS SYSTEM
 # ============================================================================
 
