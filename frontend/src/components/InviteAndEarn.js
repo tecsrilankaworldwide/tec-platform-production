@@ -233,43 +233,49 @@ const InviteAndEarn = () => {
           </div>
         </div>
 
-        {/* How It Works */}
-        <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 border-2 border-purple-100">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">How It Works</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* How It Works - Soft Pastel */}
+        <div className="bg-white rounded-3xl shadow-xl p-10 md:p-12 border-4 mb-12 relative z-10 fade-in-up" style={{borderColor: 'var(--pastel-pink)'}}>
+          <h2 className="text-4xl font-extrabold text-center mb-12" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
+            How It Works 🌈
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="text-center">
-              <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">📤</span>
+              <div className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{background: 'var(--pastel-sky)'}}>
+                <span className="text-5xl">📤</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">1. Share Your Link</h3>
-              <p className="text-gray-600">Copy your unique referral link and share it with friends via social media or messaging apps.</p>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-extrabold shadow-md" style={{background: 'var(--vibrant-sky)', fontFamily: 'var(--font-primary)'}}>1</div>
+              <h3 className="text-2xl font-extrabold mb-4" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>Share Your Link</h3>
+              <p className="text-gray-600 leading-relaxed text-base">Copy your special referral link and share it with friends on WhatsApp, Facebook, or any social media! 💌</p>
             </div>
             
             <div className="text-center">
-              <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">🎓</span>
+              <div className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{background: 'var(--pastel-mint)'}}>
+                <span className="text-5xl">🎓</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">2. Friends Join</h3>
-              <p className="text-gray-600">When your friends sign up using your link, they get access to quality education and you get credit!</p>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-extrabold shadow-md" style={{background: 'var(--vibrant-mint)', fontFamily: 'var(--font-primary)'}}>2</div>
+              <h3 className="text-2xl font-extrabold mb-4" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>Friends Join!</h3>
+              <p className="text-gray-600 leading-relaxed text-base">When your friends sign up using your link, they start their learning journey and you both win! 🚀</p>
             </div>
             
             <div className="text-center">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">🎁</span>
+              <div className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{background: 'var(--pastel-peach)'}}>
+                <span className="text-5xl">🎁</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">3. Earn Rewards</h3>
-              <p className="text-gray-600">Get 100 XP for each successful signup! Use your XP to unlock badges and climb the leaderboard.</p>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-extrabold shadow-md" style={{background: 'var(--vibrant-coral)', fontFamily: 'var(--font-primary)'}}>3</div>
+              <h3 className="text-2xl font-extrabold mb-4" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>Earn Rewards!</h3>
+              <p className="text-gray-600 leading-relaxed text-base">Get 100 XP instantly for each friend who joins! Unlock badges and climb the leaderboard! 🏆</p>
             </div>
           </div>
         </div>
 
-        {/* Referral Code Badge */}
-        <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-3 bg-white rounded-2xl px-8 py-4 shadow-lg border-2 border-purple-100">
-            <span className="text-gray-600 font-medium">Your Referral Code:</span>
-            <span className="text-2xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent" data-testid="referral-code-display">
+        {/* Referral Code Badge - Cute Design */}
+        <div className="text-center relative z-10 bounce-in">
+          <div className="inline-flex items-center gap-4 bg-white rounded-3xl px-10 py-6 shadow-xl border-4" style={{borderColor: 'var(--pastel-purple)'}}>
+            <span className="text-gray-600 font-semibold text-lg" style={{fontFamily: 'var(--font-secondary)'}}>Your Code:</span>
+            <span className="text-4xl font-extrabold px-6 py-2 rounded-2xl" style={{background: 'var(--pastel-purple)', color: '#6B46C1', fontFamily: 'var(--font-primary)'}} data-testid="referral-code-display">
               {referralData?.referral_code}
             </span>
+            <span className="text-3xl">✨</span>
           </div>
         </div>
       </div>

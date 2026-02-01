@@ -17,6 +17,18 @@
   },
   {
     "content": "Phase A: Test Free Trial flow",
+    "status": "completed"
+  },
+  {
+    "content": "Design Enhancement: Create soft pastel theme system",
+    "status": "completed"
+  },
+  {
+    "content": "Design Enhancement: Update InviteAndEarn with pastel design",
+    "status": "completed"
+  },
+  {
+    "content": "Design Enhancement: Update other pages with pastel colors",
     "status": "in_progress"
   },
   {
