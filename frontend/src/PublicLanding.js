@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useLanguage } from './LanguageContext';
 import { translations } from './translations';
 import PayPalPayment from './components/PayPalPayment';
+import FreeTrialModal from './components/FreeTrialModal';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -26,6 +27,7 @@ const PublicLanding = () => {
   const [showBankDetails, setShowBankDetails] = useState(false);
   const [showPayPal, setShowPayPal] = useState(false);
   const [paypalSuccess, setPaypalSuccess] = useState(false);
+  const [showFreeTrialModal, setShowFreeTrialModal] = useState(false);
 
   const programs = [
     {
