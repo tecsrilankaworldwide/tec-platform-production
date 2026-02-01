@@ -437,6 +437,9 @@ class User(UserBase):
     id_card_issued_date: Optional[str] = None
     referral_code: Optional[str] = None  # Unique referral code for user
     referral_conversions: int = 0  # Count of successful referrals
+    trial_used: bool = False  # Track if user has used free trial
+    trial_started_at: Optional[datetime] = None  # When trial started
+    is_trial_active: bool = False  # Currently in trial period
 
 class UserLogin(BaseModel):
     email: str
