@@ -435,6 +435,8 @@ class User(UserBase):
     total_watch_time: int = 0  # in minutes
     id_card_issued: bool = False  # Track if ID card has been issued
     id_card_issued_date: Optional[str] = None
+    referral_code: Optional[str] = None  # Unique referral code for user
+    referral_conversions: int = 0  # Count of successful referrals
 
 class UserLogin(BaseModel):
     email: str
