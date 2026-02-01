@@ -93,44 +93,48 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-8 text-white relative">
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-md z-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border-4" style={{borderColor: 'var(--pastel-purple)'}}>
+        {/* Header - Soft Gradient */}
+        <div className="p-8 text-white relative" style={{background: 'linear-gradient(135deg, #A78BFA 0%, #F472B6 100%)'}}>
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-all hover:scale-110"
             data-testid="close-trial-modal"
           >
             <X className="w-6 h-6" />
           </button>
           
-          <div className="flex items-center gap-3 mb-2">
-            <Sparkles className="w-8 h-8" />
-            <h2 className="text-3xl font-extrabold">Start Your Free Trial!</h2>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+              <Sparkles className="w-7 h-7" />
+            </div>
+            <h2 className="text-4xl font-extrabold" style={{fontFamily: 'var(--font-primary)'}}>
+              {step === 1 ? 'Start Your Free Trial! 🎁' : 'Welcome Aboard! 🎉'}
+            </h2>
           </div>
-          <p className="text-purple-100 text-lg">
-            {step === 1 ? 'Try 1 FREE class. No credit card required!' : 'Welcome to TecaiKids! 🎉'}
+          <p className="text-purple-100 text-lg ml-15">
+            {step === 1 ? 'Try 1 FREE class. No credit card required! Zero risk, 100% learning fun!' : 'Your learning adventure begins now!'}
           </p>
         </div>
 
         {/* Content */}
-        <div className="p-8">
+        <div className="p-8" style={{background: 'var(--cream)'}}>
           {step === 1 ? (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {error && (
-                <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 text-red-700">
-                  {error}
+                <div className="rounded-2xl p-5 text-red-700 border-3 shadow-sm" style={{background: 'var(--error-soft)', borderColor: 'var(--error)'}}>
+                  <span className="text-2xl mr-2">⚠️</span>{error}
                 </div>
               )}
 
               {photoWarning && (
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-blue-800">
+                <div className="rounded-2xl p-5 text-blue-800 border-3 shadow-sm" style={{background: 'var(--info-soft)', borderColor: 'var(--pastel-sky)'}}>
                   <div className="flex items-start gap-3">
-                    <span className="text-2xl">ℹ️</span>
+                    <span className="text-3xl">🕌</span>
                     <div>
-                      <p className="font-bold mb-1">Cultural Privacy Notice</p>
-                      <p className="text-sm">{photoWarning}</p>
+                      <p className="font-bold mb-1" style={{fontFamily: 'var(--font-primary)'}}>Cultural Privacy Notice</p>
+                      <p className="text-sm leading-relaxed">{photoWarning}</p>
                     </div>
                   </div>
                 </div>
