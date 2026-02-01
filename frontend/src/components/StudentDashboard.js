@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useAuth } from './auth/AuthContext';
+import WeeklyQuote from './WeeklyQuote';
 import { 
   User, Camera, Award, BookOpen, Clock, Trophy, Star, Calendar,
   Upload, CheckCircle, Shield, Download, Printer, Edit2, X,
