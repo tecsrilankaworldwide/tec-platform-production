@@ -152,41 +152,48 @@ const InviteAndEarn = () => {
           </div>
         </div>
 
-        {/* Referral Link Card */}
-        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mb-8 border-2 border-purple-100">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center">
-              <Share2 className="w-6 h-6 text-white" />
+        {/* Referral Link Card - Soft Pastel */}
+        <div className="bg-white rounded-3xl shadow-2xl p-10 md:p-12 mb-12 border-4 relative z-10 fade-in-up" style={{borderColor: 'var(--pastel-purple)'}}>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg" style={{background: 'linear-gradient(135deg, var(--vibrant-purple), var(--vibrant-pink))'}}>
+              <Share2 className="w-7 h-7 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800">Your Referral Link</h2>
+            <h2 className="text-3xl font-extrabold" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
+              Your Magic Referral Link ✨
+            </h2>
           </div>
           
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 mb-6">
+          <div className="rounded-3xl p-8 mb-6" style={{background: 'var(--gradient-lavender-mint)'}}>
             <div className="flex flex-col md:flex-row items-stretch gap-4">
               <input
                 type="text"
                 value={referralData?.referral_link || ''}
                 readOnly
-                className="flex-1 px-6 py-4 bg-white border-2 border-purple-200 rounded-xl font-mono text-sm focus:outline-none focus:border-purple-400"
+                className="flex-1 px-6 py-5 bg-white/90 backdrop-blur-sm rounded-2xl font-mono text-sm shadow-md border-3 focus:outline-none"
+                style={{borderColor: 'var(--pastel-purple)'}}
                 data-testid="referral-link-input"
               />
               <button
                 onClick={copyToClipboard}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"
+                className="px-10 py-5 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center justify-center gap-3"
+                style={{background: 'linear-gradient(135deg, var(--vibrant-purple), var(--vibrant-pink))', fontFamily: 'var(--font-primary)', fontSize: '18px'}}
                 data-testid="copy-link-button"
               >
                 <Copy className="w-5 h-5" />
-                {copied ? 'Copied!' : 'Copy Link'}
+                {copied ? '✓ Copied!' : 'Copy Link'}
               </button>
             </div>
           </div>
 
           <div className="mb-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-4">Share via Social Media</h3>
+            <h3 className="text-xl font-bold mb-6" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
+              Share with Friends 💌
+            </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <button
                 onClick={shareViaWhatsApp}
-                className="flex items-center justify-center gap-2 px-6 py-4 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-all duration-200 hover:scale-105"
+                className="flex items-center justify-center gap-2 px-6 py-5 text-white font-bold rounded-2xl transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg"
+                style={{background: 'linear-gradient(135deg, #25D366, #128C7E)', fontFamily: 'var(--font-primary)'}}
                 data-testid="share-whatsapp-button"
               >
                 <MessageCircle className="w-5 h-5" />
@@ -195,7 +202,8 @@ const InviteAndEarn = () => {
               
               <button
                 onClick={shareViaFacebook}
-                className="flex items-center justify-center gap-2 px-6 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all duration-200 hover:scale-105"
+                className="flex items-center justify-center gap-2 px-6 py-5 text-white font-bold rounded-2xl transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg"
+                style={{background: 'linear-gradient(135deg, #4267B2, #1877F2)', fontFamily: 'var(--font-primary)'}}
                 data-testid="share-facebook-button"
               >
                 <Facebook className="w-5 h-5" />
@@ -204,7 +212,8 @@ const InviteAndEarn = () => {
               
               <button
                 onClick={shareViaTwitter}
-                className="flex items-center justify-center gap-2 px-6 py-4 bg-sky-500 text-white font-bold rounded-xl hover:bg-sky-600 transition-all duration-200 hover:scale-105"
+                className="flex items-center justify-center gap-2 px-6 py-5 text-white font-bold rounded-2xl transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg"
+                style={{background: 'linear-gradient(135deg, #1DA1F2, #0A7CBA)', fontFamily: 'var(--font-primary)'}}
                 data-testid="share-twitter-button"
               >
                 <Twitter className="w-5 h-5" />
@@ -213,7 +222,8 @@ const InviteAndEarn = () => {
               
               <button
                 onClick={shareViaLinkedIn}
-                className="flex items-center justify-center gap-2 px-6 py-4 bg-blue-700 text-white font-bold rounded-xl hover:bg-blue-800 transition-all duration-200 hover:scale-105"
+                className="flex items-center justify-center gap-2 px-6 py-5 text-white font-bold rounded-2xl transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg"
+                style={{background: 'linear-gradient(135deg, #0077B5, #005582)', fontFamily: 'var(--font-primary)'}}
                 data-testid="share-linkedin-button"
               >
                 <Linkedin className="w-5 h-5" />
