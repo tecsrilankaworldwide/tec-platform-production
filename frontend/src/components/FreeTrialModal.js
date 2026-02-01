@@ -11,19 +11,61 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
     email: '',
     parent_name: '',
     parent_phone: '',
-    age_group: '4-6'
+    age_group: '4-6',
+    country: 'sri_lanka',
+    language: 'en'
   });
   const [loading, setLoading] = useState(false);
   const [credentials, setCredentials] = useState(null);
   const [error, setError] = useState('');
+  const [countries, setCountries] = useState([]);
+  const [pricing, setPricing] = useState(null);
+  const [photoWarning, setPhotoWarning] = useState(null);
 
   const ageGroups = [
-    { value: '4-6', label: '🌟 Ages 4-6 (Little Learners)', price: 'LKR 800/mo' },
-    { value: '7-9', label: '🚀 Ages 7-9 (Young Explorers)', price: 'LKR 1,200/mo' },
-    { value: '10-12', label: '⚡ Ages 10-12 (Smart Kids)', price: 'LKR 1,500/mo' },
-    { value: '13-15', label: '💻 Ages 13-15 (Tech Teens)', price: 'LKR 2,000/mo' },
-    { value: '16-18', label: '🎯 Ages 16-18 (Future Leaders)', price: 'LKR 2,500/mo' }
+    { value: '4-6', label: '🌟 Ages 4-6 (Little Learners)' },
+    { value: '7-9', label: '🚀 Ages 7-9 (Young Explorers)' },
+    { value: '10-12', label: '⚡ Ages 10-12 (Smart Kids)' },
+    { value: '13-15', label: '💻 Ages 13-15 (Tech Teens)' },
+    { value: '16-18', label: '🎯 Ages 16-18 (Future Leaders)' }
   ];
+
+  // Load countries on mount
+  React.useEffect(() => {
+    const loadCountries = async () => {
+      try {
+        const response = await axios.get(`${API}/countries`);
+        setCountries(response.data.countries || []);
+      } catch (err) {
+        console.error('Failed to load countries:', err);
+      }
+    };
+    if (isOpen) {
+      loadCountries();
+    }
+  }, [isOpen]);
+
+  // Load pricing when country or age group changes
+  React.useEffect(() => {
+    const loadPricing = async () => {
+      try {
+        const response = await axios.get(`${API}/pricing/${formData.country}/${formData.age_group}`);
+        setPricing(response.data);
+        
+        if (response.data.photo_alternative_recommended) {
+          setPhotoWarning(response.data.photo_message);
+        } else {
+          setPhotoWarning(null);
+        }
+      } catch (err) {
+        console.error('Failed to load pricing:', err);
+      }
+    };
+    
+    if (formData.country && formData.age_group) {
+      loadPricing();
+    }
+  }, [formData.country, formData.age_group]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,6 +123,58 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                   {error}
                 </div>
               )}
+
+              {photoWarning && (
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-blue-800">
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">ℹ️</span>
+                    <div>
+                      <p className="font-bold mb-1">Cultural Privacy Notice</p>
+                      <p className="text-sm">{photoWarning}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Country *
+                  </label>
+                  <select
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                    data-testid="trial-country"
+                  >
+                    {countries.map(country => (
+                      <option key={country.key} value={country.key}>
+                        {country.name} ({country.currency})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Preferred Language *
+                  </label>
+                  <select
+                    name="language"
+                    value={formData.language}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                    data-testid="trial-language"
+                  >
+                    {countries.find(c => c.key === formData.country)?.languages.map(lang => (
+                      <option key={lang} value={lang}>{lang.toUpperCase()}</option>
+                    )) || <option value="en">EN</option>}
+                  </select>
+                </div>
+              </div>
 
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2">
@@ -158,10 +252,15 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                 >
                   {ageGroups.map(group => (
                     <option key={group.value} value={group.value}>
-                      {group.label} - {group.price}
+                      {group.label} {pricing ? `- ${pricing.monthly.formatted}/mo` : ''}
                     </option>
                   ))}
                 </select>
+                {pricing && (
+                  <p className="text-sm text-gray-600 mt-2">
+                    Regular Price: {pricing.monthly.formatted}/month or {pricing.quarterly.formatted}/quarter
+                  </p>
+                )}
               </div>
 
               <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6">
@@ -171,7 +270,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                 </h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span> 1 FREE trial class (worth LKR 800+)
+                    <span className="text-green-600">✓</span> 1 FREE trial class{pricing && ` (worth ${pricing.monthly.formatted}+)`}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-green-600">✓</span> Full access to platform features
@@ -185,6 +284,11 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                   <li className="flex items-center gap-2">
                     <span className="text-green-600">✓</span> Cancel anytime after trial
                   </li>
+                  {photoWarning && (
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-600">✓</span> Privacy-friendly ID options (initials/avatar)
+                    </li>
+                  )}
                 </ul>
               </div>
 
