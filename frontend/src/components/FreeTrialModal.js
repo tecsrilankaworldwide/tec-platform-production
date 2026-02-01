@@ -243,7 +243,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
+                <label className="block text-sm font-bold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
                   Select Age Group *
                 </label>
                 <select
@@ -251,7 +251,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                   value={formData.age_group}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                  className="pastel-select"
                   data-testid="trial-age-group"
                 >
                   {ageGroups.map(group => (
@@ -261,36 +261,37 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                   ))}
                 </select>
                 {pricing && (
-                  <p className="text-sm text-gray-600 mt-2">
-                    Regular Price: {pricing.monthly.formatted}/month or {pricing.quarterly.formatted}/quarter
+                  <p className="text-sm mt-3 px-4 py-2 rounded-lg" style={{background: 'var(--pastel-lavender)', color: 'var(--text-medium)'}}>
+                    💰 Regular Price: <strong>{pricing.monthly.formatted}/month</strong> or <strong>{pricing.quarterly.formatted}/quarter</strong>
                   </p>
                 )}
               </div>
 
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6">
-                <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                  <Check className="w-5 h-5 text-green-600" />
-                  What You Get:
+              <div className="rounded-2xl p-6 border-3 shadow-md" style={{background: 'var(--gradient-mint-sky)', borderColor: 'var(--pastel-mint)'}}>
+                <h3 className="font-extrabold mb-4 flex items-center gap-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)', fontSize: '18px'}}>
+                  <Check className="w-6 h-6" style={{color: 'var(--vibrant-mint)'}} />
+                  What You Get FREE:
                 </h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span> 1 FREE trial class{pricing && ` (worth ${pricing.monthly.formatted}+)`}
+                <ul className="space-y-3" style={{color: 'var(--text-dark)'}}>
+                  <li className="flex items-center gap-3 text-base">
+                    <span className="text-2xl">✨</span> 
+                    <span><strong>1 FREE trial class</strong>{pricing && ` (worth ${pricing.monthly.formatted}+)`}</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span> Full access to platform features
+                  <li className="flex items-center gap-3 text-base">
+                    <span className="text-2xl">🎮</span> Full access to games & activities
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span> AI-powered learning experience
+                  <li className="flex items-center gap-3 text-base">
+                    <span className="text-2xl">🤖</span> AI-powered learning fun
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span> No credit card required
+                  <li className="flex items-center gap-3 text-base">
+                    <span className="text-2xl">💳</span> No credit card needed
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span> Cancel anytime after trial
+                  <li className="flex items-center gap-3 text-base">
+                    <span className="text-2xl">🚪</span> Cancel anytime, no strings attached
                   </li>
                   {photoWarning && (
-                    <li className="flex items-center gap-2">
-                      <span className="text-green-600">✓</span> Privacy-friendly ID options (initials/avatar)
+                    <li className="flex items-center gap-3 text-base">
+                      <span className="text-2xl">🕌</span> Privacy-friendly options (initials/avatar)
                     </li>
                   )}
                 </ul>
@@ -299,13 +300,20 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:shadow-xl transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-pastel-primary w-full text-lg py-5 disabled:opacity-50 disabled:cursor-not-allowed"
                 data-testid="start-trial-button"
               >
-                {loading ? 'Creating Your Trial...' : '🎉 Start Free Trial Now!'}
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Creating Your Free Trial...
+                  </span>
+                ) : (
+                  '🎉 Start My FREE Trial Now!'
+                )}
               </button>
 
-              <p className="text-center text-sm text-gray-500">
+              <p className="text-center text-sm" style={{color: 'var(--text-light)'}}>
                 By starting the trial, you agree to our Terms of Service
               </p>
             </form>
