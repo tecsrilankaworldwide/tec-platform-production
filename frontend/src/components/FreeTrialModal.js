@@ -142,7 +142,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
                     Country *
                   </label>
                   <select
@@ -150,7 +150,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                     value={formData.country}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                    className="pastel-select"
                     data-testid="trial-country"
                   >
                     {countries.map(country => (
@@ -162,7 +162,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                  <label className="block text-sm font-bold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
                     Preferred Language *
                   </label>
                   <select
@@ -170,7 +170,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                     value={formData.language}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                    className="pastel-select"
                     data-testid="trial-language"
                   >
                     {countries.find(c => c.key === formData.country)?.languages.map(lang => (
