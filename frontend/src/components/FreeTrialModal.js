@@ -181,7 +181,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
+                <label className="block text-sm font-bold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
                   Student's Full Name *
                 </label>
                 <input
@@ -190,14 +190,14 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                   value={formData.full_name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                  className="pastel-input"
                   placeholder="Enter student's name"
                   data-testid="trial-student-name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
+                <label className="block text-sm font-bold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
                   Email Address *
                 </label>
                 <input
@@ -206,14 +206,14 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                  className="pastel-input"
                   placeholder="your@email.com"
                   data-testid="trial-email"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
+                <label className="block text-sm font-bold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
                   Parent/Guardian Name
                 </label>
                 <input
@@ -221,14 +221,14 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                   name="parent_name"
                   value={formData.parent_name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                  className="pastel-input"
                   placeholder="Parent's name"
                   data-testid="trial-parent-name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
+                <label className="block text-sm font-bold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>
                   Parent Phone (Optional)
                 </label>
                 <input
@@ -236,7 +236,7 @@ const FreeTrialModal = ({ isOpen, onClose }) => {
                   name="parent_phone"
                   value={formData.parent_phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors"
+                  className="pastel-input"
                   placeholder="+94 77 123 4567"
                   data-testid="trial-phone"
                 />
