@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Award, Download, ExternalLink, CheckCircle, Calendar } from 'lucide-react';
+import { Award, Download, ExternalLink, CheckCircle, Calendar, Share2, MessageCircle, Facebook, Twitter, Linkedin, Copy } from 'lucide-react';
 import { triggerFireworks, triggerSchoolPride, triggerConfettiBurst } from './ConfettiEffects';
 
 const API = process.env.REACT_APP_BACKEND_URL + '/api';
@@ -10,6 +10,8 @@ const CertificatesPage = ({ token, user }) => {
   const [loading, setLoading] = useState(true);
   const [verifyCode, setVerifyCode] = useState('');
   const [verifyResult, setVerifyResult] = useState(null);
+  const [expandedShare, setExpandedShare] = useState(null);
+  const [copiedCert, setCopiedCert] = useState(null);
 
   useEffect(() => {
     loadCertificates();
@@ -59,6 +61,44 @@ const CertificatesPage = ({ token, user }) => {
     } catch (error) {
       setVerifyResult({ valid: false, message: 'Certificate not found' });
     }
+  };
+
+  const getShareUrl = (certNumber) => {
+    const baseUrl = process.env.REACT_APP_BACKEND_URL || window.location.origin;
+    return `${baseUrl}/certificates/share/${certNumber}`;
+  };
+
+  const copyShareLink = (certNumber) => {
+    const shareUrl = getShareUrl(certNumber);
+    navigator.clipboard.writeText(shareUrl);
+    setCopiedCert(certNumber);
+    setTimeout(() => setCopiedCert(null), 2000);
+  };
+
+  const shareViaWhatsApp = (cert) => {
+    const certNumber = cert.certificate_number || cert.verification_code;
+    const shareUrl = getShareUrl(certNumber);
+    const message = `🎓 I just earned a TEC Certificate! Check it out: ${shareUrl}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
+  const shareViaFacebook = (cert) => {
+    const certNumber = cert.certificate_number || cert.verification_code;
+    const shareUrl = getShareUrl(certNumber);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+  };
+
+  const shareViaTwitter = (cert) => {
+    const certNumber = cert.certificate_number || cert.verification_code;
+    const shareUrl = getShareUrl(certNumber);
+    const text = `🎓 I just earned my TEC Certificate! #TecaiKids #FutureReady`;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+  };
+
+  const shareViaLinkedIn = (cert) => {
+    const certNumber = cert.certificate_number || cert.verification_code;
+    const shareUrl = getShareUrl(certNumber);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
   };
 
   if (loading) {
@@ -123,15 +163,77 @@ const CertificatesPage = ({ token, user }) => {
                     </span>
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="flex flex-col gap-3">
                     <button
                       onClick={() => downloadCertificate(cert.id)}
-                      className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white rounded-full font-bold hover:shadow-lg transition-all"
+                      className="flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white rounded-full font-bold hover:shadow-lg transition-all"
                       data-testid={`download-cert-${cert.id}`}
                     >
                       <Download className="w-4 h-4" />
                       Download PDF
                     </button>
+                    
+                    {/* Share Button */}
+                    <button
+                      onClick={() => setExpandedShare(expandedShare === cert.id ? null : cert.id)}
+                      className="flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-bold hover:shadow-lg transition-all"
+                      data-testid={`share-cert-${cert.id}`}
+                    >
+                      <Share2 className="w-4 h-4" />
+                      Share Certificate
+                    </button>
+                    
+                    {/* Share Options */}
+                    {expandedShare === cert.id && (
+                      <div className="mt-2 p-4 bg-gray-50 rounded-xl space-y-2 animate-in fade-in slide-in-from-top duration-200">
+                        <div className="grid grid-cols-2 gap-2">
+                          <button
+                            onClick={() => shareViaWhatsApp(cert)}
+                            className="flex items-center justify-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all text-sm font-medium"
+                            data-testid={`share-whatsapp-${cert.id}`}
+                          >
+                            <MessageCircle className="w-4 h-4" />
+                            WhatsApp
+                          </button>
+                          
+                          <button
+                            onClick={() => shareViaFacebook(cert)}
+                            className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-sm font-medium"
+                            data-testid={`share-facebook-${cert.id}`}
+                          >
+                            <Facebook className="w-4 h-4" />
+                            Facebook
+                          </button>
+                          
+                          <button
+                            onClick={() => shareViaTwitter(cert)}
+                            className="flex items-center justify-center gap-2 px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-all text-sm font-medium"
+                            data-testid={`share-twitter-${cert.id}`}
+                          >
+                            <Twitter className="w-4 h-4" />
+                            Twitter
+                          </button>
+                          
+                          <button
+                            onClick={() => shareViaLinkedIn(cert)}
+                            className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all text-sm font-medium"
+                            data-testid={`share-linkedin-${cert.id}`}
+                          >
+                            <Linkedin className="w-4 h-4" />
+                            LinkedIn
+                          </button>
+                        </div>
+                        
+                        <button
+                          onClick={() => copyShareLink(cert.certificate_number || cert.verification_code)}
+                          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all text-sm font-medium"
+                          data-testid={`copy-link-${cert.id}`}
+                        >
+                          <Copy className="w-4 h-4" />
+                          {copiedCert === (cert.certificate_number || cert.verification_code) ? 'Link Copied!' : 'Copy Share Link'}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
