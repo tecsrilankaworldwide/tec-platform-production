@@ -1,27 +1,27 @@
 [
   {
     "content": "Phase 2: Backend - Implement full referral system with stats and rewards",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Backend - Create public certificate share page with OG tags",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Backend - Apply performance optimizations (indexes, caching, projections)",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 2: Frontend - Create Invite & Earn referral page with share buttons",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Frontend - Add certificate social share buttons",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Frontend - Implement code splitting and lazy loading",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 2: Frontend - Add skeleton loaders and loading states",
