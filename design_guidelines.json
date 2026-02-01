@@ -1,0 +1,109 @@
+{
+  "identity": {
+    "name": "TecaiKids",
+    "tone": "Playful, Academic, Encouraging, Safe",
+    "target_audience": "Kids (4-18), Parents, Teachers",
+    "design_archetype": "VIBRANT PLAY (Archetype 6) with Neo-Brutalist touches"
+  },
+  "typography": {
+    "primary_font": "Nunito, sans-serif",
+    "secondary_font": "Outfit, sans-serif",
+    "font_urls": [
+      "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Outfit:wght@400;500;700&display=swap"
+    ],
+    "usage": {
+      "headings": "Nunito (Weights: 700, 800) - Use for Logo, Section Headers, Big Buttons",
+      "body": "Outfit (Weights: 400, 500) - Use for Menu items, descriptions, standard text"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#FDFBF7",
+      "surface": "#FFFFFF",
+      "primary": "#7C3AED",
+      "primary_hover": "#6D28D9",
+      "secondary": "#F472B6",
+      "accent_blue": "#3B82F6",
+      "accent_green": "#10B981",
+      "accent_orange": "#F59E0B",
+      "accent_yellow": "#FCD34D",
+      "text_main": "#1E293B",
+      "text_muted": "#64748B",
+      "border_subtle": "#E2E8F0",
+      "border_bold": "#CBD5E1"
+    },
+    "semantic": {
+      "nav_bg": "#FFFFFF",
+      "nav_item_active_bg": "#EEF2FF",
+      "nav_item_active_text": "#4F46E5",
+      "nav_item_active_border": "#C7D2FE",
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444"
+    }
+  },
+  "layout": {
+    "structure": "Sidebar Navigation (Desktop) / Bottom Tab Bar (Mobile)",
+    "spacing": {
+      "container_padding": "p-6 md:p-8",
+      "item_gap": "gap-3",
+      "section_gap": "gap-8"
+    },
+    "border_radius": {
+      "default": "rounded-2xl",
+      "button": "rounded-full",
+      "card": "rounded-3xl"
+    }
+  },
+  "components": {
+    "Navigation": {
+      "type": "Sidebar",
+      "desktop_width": "w-64",
+      "mobile_height": "h-20",
+      "style": "Chunky, Card-like items, 3D-feel buttons",
+      "interaction": "Bouncy hover effects (scale-105), Active state has 'pop' color"
+    },
+    "NavItem": {
+      "base_classes": "flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-200 font-bold text-slate-500 hover:bg-slate-100 hover:text-slate-900",
+      "active_classes": "bg-blue-50 text-blue-600 shadow-sm border-2 border-blue-100",
+      "icon_size": "w-6 h-6 md:w-7 md:h-7"
+    },
+    "Logo": {
+      "text": "TEC Future-Ready",
+      "icon": "🚀",
+      "style": "text-2xl font-extrabold text-purple-600 tracking-tight flex items-center gap-2"
+    },
+    "UserMenu": {
+      "style": "Floating card at bottom of sidebar (desktop) or top right (mobile)",
+      "avatar_placeholder": "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+    }
+  },
+  "assets": {
+    "icons": "Lucide React (Stroke width: 2.5px for 'chunky' look)",
+    "images": {
+      "logo_placeholder": "Use Emoji 🚀",
+      "avatar_placeholder": "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+    }
+  },
+  "motion": {
+    "hover": "hover:scale-105 active:scale-95 transition-transform duration-200 ease-out",
+    "page_transition": "animate-in fade-in slide-in-from-bottom-4 duration-500"
+  },
+  "instructions_to_main_agent": [
+    "REPLACE the top navbar in Navigation.jsx with a responsive Sidebar (Desktop) / Bottom Bar (Mobile) layout.",
+    "USE the 'Nunito' font for all headings and navigation text to make it friendly.",
+    "IMPLEMENT a '3D Button' look for active states using borders (e.g., border-b-4).",
+    "GROUP navigation items by role (Student, Teacher, Parent) clearly.",
+    "USE large, colorful icons for each menu item.",
+    "ENSURE the 'Features' dropdown is converted into an expandable accordion or a separate section in the sidebar.",
+    "KEEP all existing routes and logic (isTeacher, isStudent, etc.).",
+    "ADD a 'Gamified' feel: Progress bars or streaks in the sidebar if data allows (mock it if needed).",
+    "USE 'lucide-react' icons with strokeWidth={2.5}."
+  ],
+  "universal_guidelines": [
+    "Do not use gradients for text unless it is a very large headline.",
+    "Avoid thin borders (1px). Use 2px or 3px for a 'cartoon' feel.",
+    "Use 'gap-4' or 'gap-6' minimum. Don't cram elements.",
+    "All interactive elements must have `data-testid`."
+  ]
+}
