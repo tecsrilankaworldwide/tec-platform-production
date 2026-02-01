@@ -79,56 +79,76 @@ const InviteAndEarn = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen" style={{background: 'linear-gradient(135deg, #E6E6FA 0%, #FFD6E8 50%, #D4F4E7 100%)'}}>
+      <div className="max-w-6xl mx-auto p-6">
+        
+        {/* Floating Decorative Shapes */}
+        <div className="floating-shapes">
+          <div className="shape shape-circle shape-1" style={{background: 'var(--pastel-purple)'}}></div>
+          <div className="shape shape-circle shape-2" style={{background: 'var(--pastel-pink)'}}></div>
+          <div className="shape shape-circle shape-3" style={{background: 'var(--pastel-mint)'}}></div>
+        </div>
         
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full mb-4">
-            <Gift className="w-5 h-5" />
-            <span className="font-bold">Invite & Earn Rewards</span>
+        <div className="text-center mb-12 relative z-10 fade-in-up">
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md text-purple-700 px-8 py-4 rounded-full mb-6 shadow-lg border-3" style={{borderColor: 'var(--pastel-purple)', borderWidth: '3px'}}>
+            <Gift className="w-6 h-6" />
+            <span className="font-extrabold text-lg" style={{fontFamily: 'var(--font-primary)'}}>Invite Friends & Earn Rewards</span>
           </div>
-          <h1 className="text-5xl font-extrabold text-gray-800 mb-4">
-            Share the <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Gift of Learning</span>
+          <h1 className="text-6xl font-extrabold mb-6" style={{fontFamily: 'var(--font-primary)', color: 'var(--text-dark)'}}>
+            Share the Magic of<br/>
+            <span style={{background: 'linear-gradient(135deg, #A78BFA, #F472B6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>
+              Learning Together! ✨
+            </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Invite your friends to TecaiKids and earn rewards when they join! Help build a community of future-ready learners.
+          <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+            Invite your friends to join TecaiKids and earn amazing rewards! 
+            The more friends who join, the more XP you collect! 🎁
           </p>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-purple-100" data-testid="referral-clicks-card">
+        {/* Stats Cards - Soft Pastel */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 relative z-10">
+          <div className="bg-white rounded-3xl p-8 shadow-xl border-4 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{borderColor: 'var(--pastel-sky)'}} data-testid="referral-clicks-card">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                <Users className="w-7 h-7 text-blue-600" />
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{background: 'var(--pastel-sky)'}}>
+                <Users className="w-8 h-8 text-blue-600" />
               </div>
-              <TrendingUp className="w-6 h-6 text-blue-500" />
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{background: 'var(--pastel-sky)'}}>
+                <TrendingUp className="w-6 h-6 text-blue-600" />
+              </div>
             </div>
-            <div className="text-4xl font-extrabold text-gray-800 mb-2">{stats?.total_clicks || 0}</div>
-            <div className="text-gray-600 font-medium">Total Clicks</div>
+            <div className="text-5xl font-extrabold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>{stats?.total_clicks || 0}</div>
+            <div className="text-gray-600 font-semibold text-lg">Friends Who Clicked</div>
+            <p className="text-sm text-gray-500 mt-2">People interested in joining! 👀</p>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-green-100" data-testid="referral-signups-card">
+          <div className="bg-white rounded-3xl p-8 shadow-xl border-4 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{borderColor: 'var(--pastel-mint)'}} data-testid="referral-signups-card">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center">
-                <Sparkles className="w-7 h-7 text-green-600" />
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{background: 'var(--pastel-mint)'}}>
+                <Sparkles className="w-8 h-8 text-green-600" />
               </div>
-              <TrendingUp className="w-6 h-6 text-green-500" />
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{background: 'var(--pastel-mint)'}}>
+                <TrendingUp className="w-6 h-6 text-green-600" />
+              </div>
             </div>
-            <div className="text-4xl font-extrabold text-gray-800 mb-2">{stats?.total_conversions || 0}</div>
-            <div className="text-gray-600 font-medium">Successful Signups</div>
+            <div className="text-5xl font-extrabold mb-2" style={{color: 'var(--text-dark)', fontFamily: 'var(--font-primary)'}}>{stats?.total_conversions || 0}</div>
+            <div className="text-gray-600 font-semibold text-lg">Friends Joined!</div>
+            <p className="text-sm text-gray-500 mt-2">New learners you helped! 🎓</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8 shadow-xl text-white" data-testid="referral-rewards-card">
+          <div className="bg-white rounded-3xl p-8 shadow-xl border-4 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{borderColor: 'var(--pastel-peach)', background: 'linear-gradient(135deg, #FFE5D4, #FFD6E8)'}} data-testid="referral-rewards-card">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
-                <Gift className="w-7 h-7 text-white" />
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-white/60 backdrop-blur-sm">
+                <Gift className="w-8 h-8 text-orange-600" />
               </div>
-              <Sparkles className="w-6 h-6 text-white/80" />
+              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white/60 backdrop-blur-sm">
+                <Sparkles className="w-6 h-6 text-orange-600" />
+              </div>
             </div>
-            <div className="text-4xl font-extrabold mb-2">{stats?.total_rewards || 0} XP</div>
-            <div className="text-white/90 font-medium">Total Rewards Earned</div>
+            <div className="text-5xl font-extrabold mb-2 text-orange-700" style={{fontFamily: 'var(--font-primary)'}}>{stats?.total_rewards || 0} XP</div>
+            <div className="text-orange-800 font-semibold text-lg">Rewards Earned!</div>
+            <p className="text-sm text-orange-700 mt-2">Keep sharing to earn more! 🌟</p>
           </div>
         </div>
 
