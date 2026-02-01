@@ -6859,6 +6859,8 @@ class TrialEnrollmentRequest(BaseModel):
     email: str
     parent_phone: Optional[str] = None
     parent_name: Optional[str] = None
+    country: Optional[str] = "international"  # Country code
+    language: Optional[str] = "en"  # Preferred language
 
 class TrialStatusResponse(BaseModel):
     can_start_trial: bool
@@ -6918,6 +6920,14 @@ async def enroll_in_free_trial(trial_request: TrialEnrollmentRequest):
         AgeGroup.LEADERS: LearningLevel.LEADERS
     }
     
+    # Get country configuration
+    country_code = trial_request.country or "international"
+    country_config = get_country_config(country_code)
+    
+    # Determine photo type based on country policy
+    should_avoid_photo, photo_msg = should_recommend_photo_alternative(country_code)
+    default_photo_type = "initials" if should_avoid_photo else "photo"
+    
     trial_user = {
         "id": str(uuid.uuid4()),
         "email": trial_request.email,
@@ -6926,6 +6936,9 @@ async def enroll_in_free_trial(trial_request: TrialEnrollmentRequest):
         "age_group": trial_request.age_group.value,
         "parent_phone": trial_request.parent_phone,
         "parent_name": trial_request.parent_name,
+        "country": country_code,
+        "language": trial_request.language or country_config["default_language"],
+        "photo_type": default_photo_type,  # Culturally appropriate default
         "learning_level": learning_level_map.get(trial_request.age_group, LearningLevel.FOUNDATION).value,
         "created_at": datetime.now(timezone.utc),
         "is_active": True,
