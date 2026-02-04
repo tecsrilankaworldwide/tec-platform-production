@@ -942,12 +942,33 @@ const PublicLanding = () => {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <div className="text-2xl font-bold mb-2">{t.footer.company}</div>
-          <div className="text-gray-400 mb-4">{t.footer.tagline}</div>
-          <div className="text-purple-300">{t.footer.focus}</div>
-          <div className="mt-8 text-sm text-gray-500">
-            {t.footer.copyright}
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <div className="text-2xl font-bold mb-2">{t.footer.company}</div>
+            <div className="text-gray-400 mb-4">{t.footer.tagline}</div>
+            <div className="text-purple-300">{t.footer.focus}</div>
+            <div className="mt-8 text-sm text-gray-500">
+              {t.footer.copyright}
+            </div>
+          </div>
+          
+          {/* TEC Worldwide Badge - Bottom Left */}
+          <div className="flex justify-start">
+            <a
+              href="https://tecsrilanka.com.lk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl shadow-lg transition-all hover:scale-105"
+              style={{
+                background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)',
+                border: '2px solid rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              <span className="text-2xl">🚀</span>
+              <span className="text-white font-bold text-sm">
+                Powered by TEC Worldwide Ltd
+              </span>
+            </a>
           </div>
         </div>
       </footer>
