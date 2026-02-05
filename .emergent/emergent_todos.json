@@ -1,38 +1,22 @@
 [
   {
-    "content": "Exam App: Create backend server with exam models",
+    "content": "Exam App: Complete all core components",
     "status": "completed"
   },
   {
-    "content": "Exam App: Create frontend App structure",
-    "status": "completed"
-  },
-  {
-    "content": "Exam App: Build AuthContext for authentication",
+    "content": "Exam App: Create sample exam data for testing",
     "status": "in_progress"
   },
   {
-    "content": "Exam App: Build MCQ Exam Interface with timer",
+    "content": "Exam App: Setup and test deployment",
     "status": "pending"
   },
   {
-    "content": "Exam App: Build Progress Report (blood report style)",
+    "content": "Exam App: Push to GitHub",
     "status": "pending"
   },
   {
-    "content": "Exam App: Build Teacher marking interface",
-    "status": "pending"
-  },
-  {
-    "content": "Exam App: Build Admin exam creation",
-    "status": "pending"
-  },
-  {
-    "content": "Exam App: Test complete flow",
-    "status": "pending"
-  },
-  {
-    "content": "TecaiKids: DNS propagation check",
+    "content": "TecaiKids: DNS propagation check (www.tecaikids.com)",
     "status": "pending"
   }
 ]
