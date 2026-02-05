@@ -1,30 +1,30 @@
 [
   {
-    "content": "Push badge changes to GitHub (TEC Worldwide Ltd branding)",
-    "status": "completed"
-  },
-  {
-    "content": "Fix CORS issue and push to GitHub",
-    "status": "completed"
-  },
-  {
-    "content": "Wake up deployment servers",
+    "content": "Run compilation check on frontend and backend",
     "status": "in_progress"
   },
   {
-    "content": "Run automated tests on deployed platform",
+    "content": "Check for .env files and validate their format",
     "status": "pending"
   },
   {
-    "content": "Help connect tecaikids.com domain to deployment",
+    "content": "Scan for hardcoded URLs in frontend source files",
     "status": "pending"
   },
   {
-    "content": "Fix any bugs or issues found",
+    "content": "Scan for hardcoded DB connections and secrets in backend",
     "status": "pending"
   },
   {
-    "content": "User to redeploy after CORS fix",
+    "content": "Validate CORS configuration",
+    "status": "pending"
+  },
+  {
+    "content": "Check for supervisor configuration",
+    "status": "pending"
+  },
+  {
+    "content": "Generate final deployment report",
     "status": "pending"
   }
 ]
