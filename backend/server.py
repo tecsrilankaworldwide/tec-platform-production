@@ -5098,7 +5098,15 @@ async def app_root():
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=[
+        "*",
+        "https://e2-tec-platform.preview.emergentagent.com",
+        "https://e2-tec-platform.preview.static.emergentagent.com",
+        "https://tecaikids.com",
+        "https://www.tecaikids.com",
+        "http://localhost:3000",
+        "http://localhost:5173"
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
