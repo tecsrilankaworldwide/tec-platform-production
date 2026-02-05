@@ -4,8 +4,16 @@
     "status": "completed"
   },
   {
-    "content": "Run automated tests on deployed platform",
+    "content": "Fix CORS issue and push to GitHub",
+    "status": "completed"
+  },
+  {
+    "content": "Wake up deployment servers",
     "status": "in_progress"
+  },
+  {
+    "content": "Run automated tests on deployed platform",
+    "status": "pending"
   },
   {
     "content": "Help connect tecaikids.com domain to deployment",
@@ -16,7 +24,7 @@
     "status": "pending"
   },
   {
-    "content": "Redeploy with badge changes",
+    "content": "User to redeploy after CORS fix",
     "status": "pending"
   }
 ]
