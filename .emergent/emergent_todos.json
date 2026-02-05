@@ -1,30 +1,22 @@
 [
   {
-    "content": "Phase B: Zoom Integration - Get integration playbook",
+    "content": "Push badge changes to GitHub (TEC Worldwide Ltd branding)",
+    "status": "completed"
+  },
+  {
+    "content": "Run automated tests on deployed platform",
     "status": "in_progress"
   },
   {
-    "content": "Phase B: Zoom Integration - Implement backend (create/join meetings)",
+    "content": "Help connect tecaikids.com domain to deployment",
     "status": "pending"
   },
   {
-    "content": "Phase B: Zoom Integration - Implement frontend (meeting UI)",
+    "content": "Fix any bugs or issues found",
     "status": "pending"
   },
   {
-    "content": "Phase B: Zoom Integration - Update class scheduler with Zoom",
-    "status": "pending"
-  },
-  {
-    "content": "Phase B: Zoom Integration - Test end-to-end",
-    "status": "pending"
-  },
-  {
-    "content": "Final: Comprehensive testing before deployment",
-    "status": "pending"
-  },
-  {
-    "content": "Final: Deploy to production",
+    "content": "Redeploy with badge changes",
     "status": "pending"
   }
 ]
