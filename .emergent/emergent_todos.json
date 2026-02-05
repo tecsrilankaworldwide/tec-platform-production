@@ -1,19 +1,15 @@
 [
   {
-    "content": "Exam App: Complete all core components",
+    "content": "Exam App: Create sample exam data for testing",
     "status": "completed"
   },
   {
-    "content": "Exam App: Create sample exam data for testing",
-    "status": "in_progress"
-  },
-  {
-    "content": "Exam App: Setup and test deployment",
-    "status": "pending"
-  },
-  {
     "content": "Exam App: Push to GitHub",
-    "status": "pending"
+    "status": "completed"
+  },
+  {
+    "content": "Exam App: Deploy and test",
+    "status": "in_progress"
   },
   {
     "content": "TecaiKids: DNS propagation check (www.tecaikids.com)",
