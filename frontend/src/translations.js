@@ -29,7 +29,7 @@ export const translations = {
       bank: "Bank:",
       bankName: "Bank of Ceylon",
       accountName: "Account Name:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "Account Number:",
       branch: "Branch:",
       branchName: "Nugegoda",
@@ -219,10 +219,10 @@ export const translations = {
     
     // Footer
     footer: {
-      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd (Pvt.) Ltd",
       tagline: "42 Years of Educational Excellence • Est. 1982",
       focus: "Computers • Robotics • AI Future",
-      copyright: "© 2025 TEC WORLD Worldwide. All rights reserved."
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. All rights reserved."
     }
   },
   
@@ -252,7 +252,7 @@ export const translations = {
       bank: "බැංකුව:",
       bankName: "බැංකු ඔෆ් සිලෝන්",
       accountName: "ගිණුම් නම:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "ගිණුම් අංකය:",
       branch: "ශාඛාව:",
       branchName: "නුගේගොඩ",
@@ -471,7 +471,7 @@ export const translations = {
       bank: "வங்கி:",
       bankName: "பாங்க் ஆஃப் சிலோன்",
       accountName: "கணக்கு பெயர்:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "கணக்கு எண்:",
       branch: "கிளை:",
       branchName: "நுகேகொட",
@@ -660,7 +660,7 @@ export const translations = {
       company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd",
       tagline: "42 ஆண்டுகள் கல்வி சிறப்பு • நிறுவப்பட்டது 1982",
       focus: "கணினிகள் • ரோபோடிக்ஸ் • AI எதிர்காலம்",
-      copyright: "© 2025 TEC WORLD Worldwide. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
     }
   },
   
@@ -690,7 +690,7 @@ export const translations = {
       bank: "银行：",
       bankName: "锡兰银行",
       accountName: "账户名称：",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "账号：",
       branch: "分行：",
       branchName: "Nugegoda",
@@ -876,10 +876,10 @@ export const translations = {
     },
     
     footer: {
-      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd (Pvt.) Ltd",
       tagline: "42年教育卓越 • 成立于1982年",
       focus: "计算机 • 机器人 • AI未来",
-      copyright: "© 2025 TEC WORLD Worldwide. 保留所有权利。"
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. 保留所有权利。"
     }
   },
   
@@ -909,7 +909,7 @@ export const translations = {
       bank: "Bank:",
       bankName: "Bank of Ceylon",
       accountName: "Nama Akun:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "Nomor Akun:",
       branch: "Cabang:",
       branchName: "Nugegoda",
@@ -1095,10 +1095,10 @@ export const translations = {
     },
     
     footer: {
-      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd (Pvt.) Ltd",
       tagline: "42 Tahun Keunggulan Pendidikan • Berdiri Sejak 1982",
       focus: "Komputer • Robotika • Masa Depan AI",
-      copyright: "© 2025 TEC WORLD Worldwide. Hak Cipta Dilindungi."
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. Hak Cipta Dilindungi."
     }
   },
   
@@ -1128,7 +1128,7 @@ export const translations = {
       bank: "البنك:",
       bankName: "بنك سيلان",
       accountName: "اسم الحساب:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "رقم الحساب:",
       branch: "الفرع:",
       branchName: "نوجيغودا",
@@ -1314,10 +1314,10 @@ export const translations = {
     },
     
     footer: {
-      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd (Pvt.) Ltd",
       tagline: "42 عاماً من التميز التعليمي • تأسست 1982",
       focus: "الحواسيب • الروبوتات • مستقبل الذكاء الاصطناعي",
-      copyright: "© 2025 TEC WORLD Worldwide. جميع الحقوق محفوظة."
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. جميع الحقوق محفوظة."
     }
   },
   
@@ -1347,7 +1347,7 @@ export const translations = {
       bank: "बैंक:",
       bankName: "बैंक ऑफ सीलोन",
       accountName: "खाता नाम:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "खाता संख्या:",
       branch: "शाखा:",
       branchName: "नुगेगोडा",
@@ -1533,10 +1533,10 @@ export const translations = {
     },
     
     footer: {
-      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd (Pvt.) Ltd",
       tagline: "42 वर्षों की शैक्षिक उत्कृष्टता • स्थापना 1982",
       focus: "कंप्यूटर • रोबोटिक्स • एआई भविष्य",
-      copyright: "© 2025 TEC WORLD Worldwide. सर्वाधिकार सुरक्षित।"
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. सर्वाधिकार सुरक्षित।"
     }
   },
   
@@ -1566,7 +1566,7 @@ export const translations = {
       bank: "Bank:",
       bankName: "Bank of Ceylon",
       accountName: "Nama Akaun:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "Nombor Akaun:",
       branch: "Cawangan:",
       branchName: "Nugegoda",
@@ -1752,10 +1752,10 @@ export const translations = {
     },
     
     footer: {
-      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd (Pvt.) Ltd",
       tagline: "42 Tahun Kecemerlangan Pendidikan • Ditubuhkan 1982",
       focus: "Komputer • Robotik • Masa Depan AI",
-      copyright: "© 2025 TEC WORLD Worldwide. Hak cipta terpelihara."
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. Hak cipta terpelihara."
     }
   },
   
@@ -1785,7 +1785,7 @@ export const translations = {
       bank: "ব্যাংক:",
       bankName: "ব্যাংক অফ সিলন",
       accountName: "অ্যাকাউন্টের নাম:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "অ্যাকাউন্ট নম্বর:",
       branch: "শাখা:",
       branchName: "নুগেগোডা",
@@ -1971,10 +1971,10 @@ export const translations = {
     },
     
     footer: {
-      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd (Pvt.) Ltd",
       tagline: "42 বছরের শিক্ষাগত উৎকর্ষতা • প্রতিষ্ঠিত 1982",
       focus: "কম্পিউটার • রোবোটিক্স • এআই ভবিষ্যৎ",
-      copyright: "© 2025 TEC WORLD Worldwide. সর্বস্বত্ব সংরক্ষিত।"
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. সর্বস্বত্ব সংরক্ষিত।"
     }
   },
   
@@ -2004,7 +2004,7 @@ export const translations = {
       bank: "بینک:",
       bankName: "بینک آف سیلون",
       accountName: "اکاؤنٹ کا نام:",
-      accountHolder: "TEC WORLD Worldwide",
+      accountHolder: "TEC Sri Lanka Worldwide (Pvt.) Ltd",
       accountNumber: "اکاؤنٹ نمبر:",
       branch: "برانچ:",
       branchName: "نوگیگوڈا",
@@ -2190,10 +2190,10 @@ export const translations = {
     },
     
     footer: {
-      company: "🏫 TEC WORLD Worldwide (Pvt.) Ltd",
+      company: "🏫 TEC Sri Lanka Worldwide (Pvt.) Ltd (Pvt.) Ltd",
       tagline: "تعلیمی بہترین کارکردگی کے 42 سال • قائم 1982",
       focus: "کمپیوٹرز • روبوٹکس • AI مستقبل",
-      copyright: "© 2025 TEC WORLD Worldwide. جملہ حقوق محفوظ ہیں۔"
+      copyright: "© 2025 TEC Sri Lanka Worldwide (Pvt.) Ltd. جملہ حقوق محفوظ ہیں۔"
     }
   }
 };
