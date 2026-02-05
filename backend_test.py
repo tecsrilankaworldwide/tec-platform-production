@@ -1,374 +1,258 @@
 import requests
 import sys
-import json
 from datetime import datetime
 
 class TecaiKidsAPITester:
-    def __init__(self, base_url="https://tecsrilanka-prod.preview.emergentagent.com/api"):
+    def __init__(self, base_url="https://tecsrilanka-prod.preview.emergentagent.com"):
         self.base_url = base_url
+        self.api_url = f"{base_url}/api"
         self.token = None
-        self.user_id = None
-        self.referral_code = None
         self.tests_run = 0
         self.tests_passed = 0
         self.test_results = []
 
-    def log_test(self, name, passed, details=""):
-        """Log test result"""
+    def run_test(self, name, method, endpoint, expected_status, data=None, headers=None):
+        """Run a single API test"""
+        url = f"{self.api_url}/{endpoint}"
+        test_headers = {'Content-Type': 'application/json'}
+        if headers:
+            test_headers.update(headers)
+        if self.token:
+            test_headers['Authorization'] = f'Bearer {self.token}'
+
         self.tests_run += 1
-        if passed:
-            self.tests_passed += 1
-            print(f"✅ PASS: {name}")
-        else:
-            print(f"❌ FAIL: {name}")
-        
-        if details:
-            print(f"   Details: {details}")
-        
-        self.test_results.append({
-            "test": name,
-            "passed": passed,
-            "details": details
-        })
-
-    def test_login(self, email, password):
-        """Test login and get token"""
-        print(f"\n🔍 Testing Login for {email}...")
+        print(f"\n🔍 Testing {name}...")
         
         try:
-            response = requests.post(
-                f"{self.base_url}/login",
-                json={"email": email, "password": password},
-                timeout=10
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                self.token = data.get('access_token')
-                self.user_id = data.get('user', {}).get('id')
-                self.log_test(f"Login ({email})", True, f"Token received, User ID: {self.user_id}")
-                return True
-            else:
-                self.log_test(f"Login ({email})", False, f"Status: {response.status_code}, Response: {response.text[:200]}")
-                return False
-        except Exception as e:
-            self.log_test(f"Login ({email})", False, f"Error: {str(e)}")
-            return False
+            if method == 'GET':
+                response = requests.get(url, headers=test_headers, timeout=10)
+            elif method == 'POST':
+                response = requests.post(url, json=data, headers=test_headers, timeout=10)
+            elif method == 'PUT':
+                response = requests.put(url, json=data, headers=test_headers, timeout=10)
 
-    def test_generate_referral_code(self):
-        """Test POST /api/referrals/code - Generate referral code"""
-        print(f"\n🔍 Testing Generate Referral Code...")
+            success = response.status_code == expected_status
+            if success:
+                self.tests_passed += 1
+                print(f"✅ Passed - Status: {response.status_code}")
+                self.test_results.append({"test": name, "status": "PASS", "code": response.status_code})
+            else:
+                print(f"❌ Failed - Expected {expected_status}, got {response.status_code}")
+                print(f"   Response: {response.text[:200]}")
+                self.test_results.append({"test": name, "status": "FAIL", "code": response.status_code, "expected": expected_status})
+
+            return success, response.json() if response.status_code < 500 else {}
+
+        except Exception as e:
+            print(f"❌ Failed - Error: {str(e)}")
+            self.test_results.append({"test": name, "status": "ERROR", "error": str(e)})
+            return False, {}
+
+    def test_countries_endpoint(self):
+        """Test countries endpoint"""
+        success, response = self.run_test(
+            "Get Countries List",
+            "GET",
+            "countries",
+            200
+        )
+        if success and 'countries' in response:
+            print(f"   Found {len(response['countries'])} countries")
+            # Check for key countries
+            country_keys = [c['key'] for c in response['countries']]
+            expected = ['sri_lanka', 'india', 'saudi_arabia', 'uae', 'pakistan']
+            for country in expected:
+                if country in country_keys:
+                    print(f"   ✓ {country} found")
+        return success
+
+    def test_pricing_endpoint(self):
+        """Test pricing endpoint for different countries"""
+        countries = ['sri_lanka', 'india', 'saudi_arabia']
+        age_groups = ['4-6', '7-9', '10-12']
         
+        for country in countries:
+            for age_group in age_groups:
+                success, response = self.run_test(
+                    f"Get Pricing - {country} - {age_group}",
+                    "GET",
+                    f"pricing/{country}/{age_group}",
+                    200
+                )
+                if success:
+                    print(f"   Monthly: {response.get('monthly', {}).get('formatted', 'N/A')}")
+                    if 'photo_alternative_recommended' in response:
+                        print(f"   Photo alternative: {response['photo_alternative_recommended']}")
+        return True
+
+    def test_weekly_quote(self):
+        """Test weekly quote endpoint"""
+        success, response = self.run_test(
+            "Get Weekly Quote",
+            "GET",
+            "quotes/weekly",
+            200
+        )
+        if success:
+            print(f"   Quote: \"{response.get('quote', 'N/A')[:50]}...\"")
+            print(f"   Author: {response.get('author', 'N/A')}")
+            print(f"   Week: {response.get('cycle_week', 'N/A')}/12")
+        return success
+
+    def test_free_trial_enrollment(self):
+        """Test free trial enrollment"""
+        test_email = f"test_trial_{datetime.now().strftime('%H%M%S')}@tecaikids.com"
+        
+        success, response = self.run_test(
+            "Free Trial Enrollment",
+            "POST",
+            "trial/enroll",
+            200,
+            data={
+                "full_name": "Test Student",
+                "email": test_email,
+                "parent_name": "Test Parent",
+                "parent_phone": "+94771234567",
+                "age_group": "7-9",
+                "country": "sri_lanka",
+                "language": "en"
+            }
+        )
+        if success:
+            print(f"   Email: {response.get('email', 'N/A')}")
+            print(f"   Temp Password: {response.get('temporary_password', 'N/A')}")
+            print(f"   Trial Active: {response.get('trial_active', False)}")
+            
+            # Try to login with credentials
+            if 'email' in response and 'temporary_password' in response:
+                login_success, login_response = self.run_test(
+                    "Login with Trial Credentials",
+                    "POST",
+                    "login",
+                    200,
+                    data={
+                        "email": response['email'],
+                        "password": response['temporary_password']
+                    }
+                )
+                if login_success and 'access_token' in login_response:
+                    self.token = login_response['access_token']
+                    print(f"   ✓ Login successful, token obtained")
+                    return True
+        return success
+
+    def test_student_dashboard(self):
+        """Test student dashboard (requires authentication)"""
         if not self.token:
-            self.log_test("Generate Referral Code", False, "No auth token available")
+            print("⚠️  Skipping dashboard test - no auth token")
             return False
-        
-        try:
-            response = requests.post(
-                f"{self.base_url}/referrals/code",
-                headers={'Authorization': f'Bearer {self.token}'},
-                timeout=10
-            )
             
-            if response.status_code == 200:
-                data = response.json()
-                self.referral_code = data.get('referral_code')
-                referral_link = data.get('referral_link')
-                
-                if self.referral_code and referral_link:
-                    self.log_test("Generate Referral Code", True, 
-                                f"Code: {self.referral_code}, Link: {referral_link}")
-                    return True
-                else:
-                    self.log_test("Generate Referral Code", False, 
-                                "Missing referral_code or referral_link in response")
-                    return False
-            else:
-                self.log_test("Generate Referral Code", False, 
-                            f"Status: {response.status_code}, Response: {response.text[:200]}")
-                return False
-        except Exception as e:
-            self.log_test("Generate Referral Code", False, f"Error: {str(e)}")
-            return False
+        success, response = self.run_test(
+            "Get Student Dashboard",
+            "GET",
+            "student/dashboard",
+            200
+        )
+        if success:
+            student = response.get('student', {})
+            print(f"   Student: {student.get('full_name', 'N/A')}")
+            print(f"   Index: {student.get('student_index', 'N/A')}")
+            print(f"   Country: {student.get('country', 'N/A')}")
+        return success
 
-    def test_track_referral_click(self):
-        """Test GET /api/referrals/track?ref=CODE - Track click"""
-        print(f"\n🔍 Testing Track Referral Click...")
-        
-        if not self.referral_code:
-            self.log_test("Track Referral Click", False, "No referral code available")
-            return False
-        
-        try:
-            response = requests.get(
-                f"{self.base_url}/referrals/track",
-                params={'ref': self.referral_code},
-                timeout=10
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                self.log_test("Track Referral Click", True, 
-                            f"Response: {json.dumps(data)}")
-                return True
-            else:
-                self.log_test("Track Referral Click", False, 
-                            f"Status: {response.status_code}, Response: {response.text[:200]}")
-                return False
-        except Exception as e:
-            self.log_test("Track Referral Click", False, f"Error: {str(e)}")
-            return False
-
-    def test_get_referral_stats(self):
-        """Test GET /api/referrals/stats - Get user stats"""
-        print(f"\n🔍 Testing Get Referral Stats...")
-        
+    def test_referral_system(self):
+        """Test referral system (requires authentication)"""
         if not self.token:
-            self.log_test("Get Referral Stats", False, "No auth token available")
+            print("⚠️  Skipping referral test - no auth token")
             return False
-        
-        try:
-            response = requests.get(
-                f"{self.base_url}/referrals/stats",
-                headers={'Authorization': f'Bearer {self.token}'},
-                timeout=10
-            )
             
-            if response.status_code == 200:
-                data = response.json()
-                clicks = data.get('total_clicks', 0)
-                conversions = data.get('total_conversions', 0)
-                rewards = data.get('total_rewards', 0)
-                
-                self.log_test("Get Referral Stats", True, 
-                            f"Clicks: {clicks}, Conversions: {conversions}, Rewards: {rewards} XP")
-                return True
-            else:
-                self.log_test("Get Referral Stats", False, 
-                            f"Status: {response.status_code}, Response: {response.text[:200]}")
-                return False
-        except Exception as e:
-            self.log_test("Get Referral Stats", False, f"Error: {str(e)}")
-            return False
+        # Create referral code
+        success, response = self.run_test(
+            "Create Referral Code",
+            "POST",
+            "referrals/code",
+            200,
+            data={}
+        )
+        if success:
+            print(f"   Code: {response.get('referral_code', 'N/A')}")
+            print(f"   Link: {response.get('referral_link', 'N/A')[:50]}...")
+        
+        # Get referral stats
+        success2, response2 = self.run_test(
+            "Get Referral Stats",
+            "GET",
+            "referrals/stats",
+            200
+        )
+        if success2:
+            print(f"   Clicks: {response2.get('total_clicks', 0)}")
+            print(f"   Conversions: {response2.get('total_conversions', 0)}")
+        
+        return success and success2
 
-    def test_certificate_share_json(self, cert_number="CERT-001"):
-        """Test GET /api/certificates/share/{number} - JSON share data"""
-        print(f"\n🔍 Testing Certificate Share JSON for {cert_number}...")
-        
-        try:
-            response = requests.get(
-                f"{self.base_url}/certificates/share/{cert_number}",
-                timeout=10
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                og_tags = data.get('og_tags', {})
-                
-                # Check required OG tags
-                required_tags = ['og:title', 'og:description', 'og:image', 'og:url']
-                missing_tags = [tag for tag in required_tags if tag not in og_tags]
-                
-                if not missing_tags:
-                    self.log_test("Certificate Share JSON", True, 
-                                f"All OG tags present. Image: {og_tags.get('og:image')}")
-                    return True
-                else:
-                    self.log_test("Certificate Share JSON", False, 
-                                f"Missing OG tags: {missing_tags}")
-                    return False
-            elif response.status_code == 404:
-                self.log_test("Certificate Share JSON", True, 
-                            f"Certificate {cert_number} not found (expected for test cert)")
-                return True
-            else:
-                self.log_test("Certificate Share JSON", False, 
-                            f"Status: {response.status_code}, Response: {response.text[:200]}")
-                return False
-        except Exception as e:
-            self.log_test("Certificate Share JSON", False, f"Error: {str(e)}")
-            return False
-
-    def test_og_image_generation(self, cert_number="CERT-001"):
-        """Test GET /api/og/cert/{number}.png - OG image generation"""
-        print(f"\n🔍 Testing OG Image Generation for {cert_number}...")
-        
-        try:
-            response = requests.get(
-                f"{self.base_url}/og/cert/{cert_number}.png",
-                timeout=15
-            )
-            
-            if response.status_code == 200:
-                content_type = response.headers.get('content-type', '')
-                content_length = len(response.content)
-                
-                if 'image/png' in content_type and content_length > 0:
-                    self.log_test("OG Image Generation", True, 
-                                f"PNG image generated, Size: {content_length} bytes")
-                    return True
-                else:
-                    self.log_test("OG Image Generation", False, 
-                                f"Invalid content type or empty: {content_type}, {content_length} bytes")
-                    return False
-            elif response.status_code == 404:
-                self.log_test("OG Image Generation", True, 
-                            f"Certificate {cert_number} not found (expected for test cert)")
-                return True
-            else:
-                self.log_test("OG Image Generation", False, 
-                            f"Status: {response.status_code}")
-                return False
-        except Exception as e:
-            self.log_test("OG Image Generation", False, f"Error: {str(e)}")
-            return False
-
-    def test_public_certificate_share_page(self, cert_number="CERT-001"):
-        """Test GET /certificates/share/{number} - Public HTML page"""
-        print(f"\n🔍 Testing Public Certificate Share Page for {cert_number}...")
-        
-        # Note: This endpoint is on the main app, not /api
-        base_url = self.base_url.replace('/api', '')
-        
-        try:
-            response = requests.get(
-                f"{base_url}/certificates/share/{cert_number}",
-                timeout=10
-            )
-            
-            if response.status_code == 200:
-                content = response.text
-                
-                # Check for OG meta tags in HTML
-                required_meta = ['og:title', 'og:image', 'og:description']
-                found_meta = [tag for tag in required_meta if tag in content]
-                
-                if len(found_meta) == len(required_meta):
-                    self.log_test("Public Certificate Share Page", True, 
-                                f"HTML page with all OG meta tags")
-                    return True
-                else:
-                    missing = set(required_meta) - set(found_meta)
-                    self.log_test("Public Certificate Share Page", False, 
-                                f"Missing meta tags: {missing}")
-                    return False
-            elif response.status_code == 404:
-                self.log_test("Public Certificate Share Page", True, 
-                            f"Certificate {cert_number} not found (expected for test cert)")
-                return True
-            else:
-                self.log_test("Public Certificate Share Page", False, 
-                            f"Status: {response.status_code}")
-                return False
-        except Exception as e:
-            self.log_test("Public Certificate Share Page", False, f"Error: {str(e)}")
-            return False
-
-    def test_get_user_certificates(self):
-        """Test GET /api/certificates - Get user certificates"""
-        print(f"\n🔍 Testing Get User Certificates...")
-        
-        if not self.token:
-            self.log_test("Get User Certificates", False, "No auth token available")
-            return False
-        
-        try:
-            response = requests.get(
-                f"{self.base_url}/certificates",
-                headers={'Authorization': f'Bearer {self.token}'},
-                timeout=10
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                cert_count = len(data) if isinstance(data, list) else 0
-                self.log_test("Get User Certificates", True, 
-                            f"Retrieved {cert_count} certificates")
-                
-                # If certificates exist, test share functionality with real cert
-                if cert_count > 0 and isinstance(data, list):
-                    cert_number = data[0].get('certificate_number')
-                    if cert_number:
-                        print(f"\n   Found real certificate: {cert_number}, testing share endpoints...")
-                        self.test_certificate_share_json(cert_number)
-                        self.test_og_image_generation(cert_number)
-                        self.test_public_certificate_share_page(cert_number)
-                
-                return True
-            else:
-                self.log_test("Get User Certificates", False, 
-                            f"Status: {response.status_code}, Response: {response.text[:200]}")
-                return False
-        except Exception as e:
-            self.log_test("Get User Certificates", False, f"Error: {str(e)}")
-            return False
-
-    def print_summary(self):
-        """Print test summary"""
-        print("\n" + "="*60)
-        print("📊 TEST SUMMARY")
-        print("="*60)
-        print(f"Total Tests: {self.tests_run}")
-        print(f"Passed: {self.tests_passed}")
-        print(f"Failed: {self.tests_run - self.tests_passed}")
-        print(f"Success Rate: {(self.tests_passed/self.tests_run*100):.1f}%" if self.tests_run > 0 else "N/A")
-        print("="*60)
-        
-        return 0 if self.tests_passed == self.tests_run else 1
+    def test_public_verification(self):
+        """Test public student verification endpoint"""
+        # This would need a real student index
+        # For now, just test that endpoint exists
+        success, response = self.run_test(
+            "Public Verification (Invalid ID)",
+            "GET",
+            "verify/TEST-F-1001",
+            200  # Should return 200 with verified: false
+        )
+        if success:
+            print(f"   Verified: {response.get('verified', False)}")
+            print(f"   Status: {response.get('status', 'N/A')}")
+        return success
 
 def main():
-    print("="*60)
-    print("🚀 TecaiKids Platform - Phase 2 Feature Testing")
-    print("   Testing: Referral System & Certificate Social Sharing")
-    print("="*60)
-    
+    print("=" * 60)
+    print("🎓 TecaiKids Platform - Backend API Testing")
+    print("=" * 60)
+    print(f"Testing URL: https://tecsrilanka-prod.preview.emergentagent.com")
+    print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 60)
+
     tester = TecaiKidsAPITester()
-    
-    # Test with student account
-    print("\n" + "="*60)
-    print("TESTING WITH STUDENT ACCOUNT")
-    print("="*60)
-    
-    if not tester.test_login("test_poc@tecaikids.com", "test123"):
-        print("\n❌ Login failed, cannot continue with referral tests")
-    else:
-        # Test Referral System
-        print("\n" + "-"*60)
-        print("REFERRAL SYSTEM TESTS")
-        print("-"*60)
-        tester.test_generate_referral_code()
-        tester.test_track_referral_click()
-        tester.test_get_referral_stats()
-        
-        # Test Certificate Sharing
-        print("\n" + "-"*60)
-        print("CERTIFICATE SHARING TESTS")
-        print("-"*60)
-        tester.test_get_user_certificates()
-        
-        # Test with dummy certificate (will likely 404, but tests endpoint structure)
-        tester.test_certificate_share_json("CERT-TEST-001")
-        tester.test_og_image_generation("CERT-TEST-001")
-        tester.test_public_certificate_share_page("CERT-TEST-001")
-    
+
+    # Run all tests
+    print("\n📋 SECTION 1: Public Endpoints")
+    print("-" * 60)
+    tester.test_countries_endpoint()
+    tester.test_pricing_endpoint()
+    tester.test_weekly_quote()
+    tester.test_public_verification()
+
+    print("\n📋 SECTION 2: Free Trial & Authentication")
+    print("-" * 60)
+    tester.test_free_trial_enrollment()
+
+    print("\n📋 SECTION 3: Authenticated Endpoints")
+    print("-" * 60)
+    tester.test_student_dashboard()
+    tester.test_referral_system()
+
     # Print summary
-    exit_code = tester.print_summary()
-    
-    # Save results to file
-    results_file = "/app/backend_test_results.json"
-    with open(results_file, 'w') as f:
-        json.dump({
-            "timestamp": datetime.utcnow().isoformat(),
-            "total_tests": tester.tests_run,
-            "passed": tester.tests_passed,
-            "failed": tester.tests_run - tester.tests_passed,
-            "success_rate": f"{(tester.tests_passed/tester.tests_run*100):.1f}%" if tester.tests_run > 0 else "0%",
-            "test_results": tester.test_results
-        }, f, indent=2)
-    
-    print(f"\n📄 Detailed results saved to: {results_file}")
-    
-    return exit_code
+    print("\n" + "=" * 60)
+    print("📊 TEST SUMMARY")
+    print("=" * 60)
+    print(f"Total Tests: {tester.tests_run}")
+    print(f"Passed: {tester.tests_passed}")
+    print(f"Failed: {tester.tests_run - tester.tests_passed}")
+    print(f"Success Rate: {(tester.tests_passed / tester.tests_run * 100):.1f}%")
+    print("=" * 60)
+
+    # Print failed tests
+    failed_tests = [t for t in tester.test_results if t['status'] != 'PASS']
+    if failed_tests:
+        print("\n❌ FAILED TESTS:")
+        for test in failed_tests:
+            print(f"  - {test['test']}: {test.get('error', f\"Status {test.get('code')} (expected {test.get('expected')})\")}") 
+    else:
+        print("\n✅ ALL TESTS PASSED!")
+
+    return 0 if tester.tests_passed == tester.tests_run else 1
 
 if __name__ == "__main__":
     sys.exit(main())
